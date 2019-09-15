@@ -1,0 +1,126 @@
+body {
+    font-family: serif;
+    font-size: 120%;
+    color: black;
+    min-width: 980px;
+    background: white;  }
+
+div {
+    background: white;
+    padding: 4px 4px 4px 4px;
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-radius: 4px;  
+}
+
+div div {
+    background: white;
+    padding: 4px 4px 4px 4px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;  
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    /*border-radius: 5px;*/
+}
+
+label {
+    display: block;
+}
+
+.responseText{ 
+    background: white;
+    padding: 4px 4px 4px 4px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px transparent; 
+}
+
+.leftLabel {
+    float: left; 
+    font-size: 80%; 
+    font-weight: bold; 
+    color: #8C1515;
+}
+
+.rightLabel {
+    float: right; 
+    font-size: 80%; 
+    font-weight: bold; 
+    color: #8C1515;
+}
+
+.block-text {
+  width: 500px;
+  text-align: justify;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.block-text2 {
+  width: 600px;
+  text-align: justify;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.scrollbox {
+    width: 520px;
+    height: 200px;
+    border: 1px solid #ccc;
+    text-align: justify;
+    margin: 0 auto;
+    overflow: auto;
+    margin-bottom: 1em;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center-block {
+  width: 600px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.center-block-bigfont {
+  width: 600px;
+  text-align: center;
+  font-size: 280%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+
+.questionSent {
+    margin-left: 20px;
+    margin-right: 20px;
+    /*text-indent: 20px;*/
+    text-align: left;
+}
+
+.optional {
+    text-indent: 20px;
+    text-align: left;
+}
+
+.sliders {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin: 5px auto;
+}
