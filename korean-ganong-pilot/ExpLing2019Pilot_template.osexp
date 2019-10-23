@@ -1,0 +1,142 @@
+---
+API: 2.1
+OpenSesame: 3.2.8
+Platform: posix
+---
+set width 1024
+set uniform_coordinates yes
+set title ExpLing2019_Pilot
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend xpyriment
+set keyboard_backend legacy
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground black
+set font_underline no
+set font_size 24
+set font_italic no
+set font_family mono
+set font_bold no
+set experiment_path "/Volumes/NO NAME"
+set disable_garbage_collection yes
+set description "The main experiment item"
+set coordinates uniform
+set compensation 0
+set color_backend legacy
+set clock_backend legacy
+set canvas_backend xpyriment
+set background white
+
+define form_text_display block2_instructions
+	set timeout infinite
+	set spacing 10
+	set rows "1;4;1"
+	set only_render no
+	set ok_text "계속 진행"
+	set margins "50;50;50;50"
+	set form_title "중간 설명"
+	__form_text__
+	1부가 끝났습니다. 실험의 절반정도가 진행되었습니다.
+	
+	2부에 대한 설명입니다. 
+	헤드폰을 쓰신 후 주의를 기울여 소리를 들으시고 ㅂ로 시작하는 단어를 들으셨는지 ㅍ로 시작하는 단어를 들으셨는지 판단해 주시기 바랍니다. ㅂ로 시작하는 단어를 들으셨으면 1을, ㅍ로 시작하는 단어를 들으셨으면 0을 눌러 주시기 바랍니다.
+	__end__
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme gray
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
+define loop block_F_td
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 0
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	run sequence_F_td
+
+define form_text_display end_instructions
+	set timeout infinite
+	set spacing 10
+	set rows "1;4;1"
+	set only_render no
+	set ok_text 끝내기
+	set margins "50;50;50;50"
+	set form_title 끝
+	__form_text__
+	실험이 끝났습니다. 
+	참여해 주셔서 감사합니다.
+	__end__
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme gray
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
+define sequence experiment
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run start_instructions always
+	run pause_focus_td always
+	run block_F_td always
+	run block2_instructions always
+	run end_instructions always
+
+define sketchpad pause_focus_td
+	set duration 1000
+	set description "Displays stimuli"
+	draw fixdot color=black show_if=always style=default x=0 y=0 z_index=0
+
+define sequence sequence_F_td
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run trial_choices_td always
+
+define form_text_display start_instructions
+	set timeout infinite
+	set spacing 10
+	set rows "1;4;1"
+	set only_render no
+	set ok_text "실험 시작"
+	set margins "50;50;50;50"
+	set form_title 안내문
+	__form_text__
+	안녕하세요. 실험에 참여해 주셔서 감사합니다.
+	이 실험을 통해 모아진 자료는 수업에서 교육 용도로만 사용되며 2019년 12월 이후 폐기됩니다. 
+	실험에 참여하시다가 원하시면 언제든지 그만 두실 수 있으며 그만두신다고 해도 어떠한 불이익도 없습니다.
+	실험은 총 15분정도 소요될 것으로 예상됩니다. 
+	
+	이 실험은 1부와 2부로 구성되어 있습니다.
+	1부에 대한 설명입니다. 
+	헤드폰을 쓰신 후 주의를 기울여 소리를 들으시고 ㄷ로 시작하는 단어를 들으셨는지 ㅌ로 시작하는 단어를 들으셨는지 판단해 주시기 바랍니다. ㄷ로 시작하는 단어를 들으셨으면 1을, ㅌ로 시작하는 단어를 들으셨으면 0을 눌러 주시기 바랍니다. 
+	__end__
+	set description "A simple text display form"
+	set cols "1;1;1"
+	set _theme gray
+	widget 0 0 3 1 label text="[form_title]"
+	widget 0 1 3 1 label center=no text="[form_text]"
+	widget 1 2 1 1 button text="[ok_text]"
+
+
+define sketchpad trial_choices_td
+	set duration 0
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=mono font_italic=no font_size=24 html=yes show_if=always text="d: 1" x=-288 y=192 z_index=0
+
