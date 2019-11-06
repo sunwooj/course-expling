@@ -1,0 +1,23 @@
+﻿sentence,order,,,,,
+문별이가 솔라와 함께 노래를 불렀다.,order1,,,,,
+문별이가 노래를 솔라와 함께 불렀다.,order2,,,,,
+문별이가 노래를 불렀다 솔라와 함께.,order3,,,,,
+노래를 문별이가 솔라와 함께 불렀다.,order4,,,,,
+문별이가 솔라와 함께 불렀다 노래를.,order5,,,,,
+,,,,,,
+item,condition,picture1,picture2,name1,name2,target
+tiger,no-qud,ecp-animals-intro2,ecp-animals-q2,Luna,Snape,Every bush might have a tiger.
+tiger,true1,ecp-animals-intro3,ecp-animals-q2,Fred,George,Every bush might have a tiger.
+tiger,false1,ecp-animals-intro1,ecp-animals-q1,Albus,Minerva,Every bush might have a tiger.
+icecream,no-qud,ecp-icecream-intro2,ecp-icecream-q2,Ron,Hermione,Every sundae might have a cherry.
+icecream,true1,ecp-icecream-intro3,ecp-icecream-q2,Ginny,Harry,Every sundae might have a cherry.
+icecream,false1,ecp-icecream-intro1,ecp-icecream-q1,Moonbyul,Solar,Every sundae might have a cherry.
+swallow,no-qud,ecp-swallow-intro2,ecp-swallow-q2,Hwasa,Wheein,Every nest might have a swallow.
+swallow,true1,ecp-swallow-intro3,ecp-swallow-q2,Hyojeong,Seunghee,Every nest might have a swallow.
+swallow,false1,ecp-swallow-intro1,ecp-swallow-q1,Soyeon,Minnie,Every nest might have a swallow.
+tree,no-qud,ecp-tree-intro2,ecp-tree-q2,Soojin,Yuqi,Every box might have a tree.
+tree,true1,ecp-tree-intro3,ecp-tree-q2,Seulgi,Irene,Every box might have a tree.
+tree,false1,ecp-tree-intro1,ecp-tree-q1,Wendy,Yeri,Every box might have a tree.
+,,,,,,
+질문 ${lm://CurrentLoopNumber} 중 ${lm://TotalLoops},,,,,,
+"<img src=""${lm://Field/1}"">",,,,,,

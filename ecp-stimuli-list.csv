@@ -1,0 +1,6 @@
+﻿item,condition,picture1,picture2,name1,name2,qud,target
+tiger,how,ecp-animals-intro2,ecp-animals-q2,Ron,Hermione,"Hermione asks: ""How many bushes have a tiger?""",Every bush might have a tiger.
+tiger,which,ecp-animals-intro2,ecp-animals-q2,Ginny,Harry,"Harry asks: ""Which bush has a tiger?""",Every bush might have a tiger.
+tiger,no-qud,ecp-animals-intro2,ecp-animals-q2,Luna,Snape,,Every bush might have a tiger.
+tiger,true1,ecp-animals-intro3,ecp-animals-q2,Fred,George,,Every bush might have a tiger.
+tiger,false1,ecp-animals-intro1,ecp-animals-q1,Albus,Minerva,,Every bush might have a tiger.
