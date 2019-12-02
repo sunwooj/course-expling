@@ -50,7 +50,7 @@ Let's try plottng the raw F0 data from assignment 1, with speaker height on the 
 
 ```{r}
 datv %>%
-  ggplot(aes(x = ht, y = F0, col = sp_gender)) + 
+  ggplot(aes(x = vtype, y = F0, col = sp_gender)) + 
   geom_point() 
 ```
 
@@ -69,7 +69,7 @@ datv %>%
 datv %>%
   ggplot(aes(x = ht, y = F0, col = sp_gender)) + 
   geom_point() +
-  facet_grid(vtype ~ wpos)
+  facet_grid(vtype ~ vpos)
 ```
 
 What do the plots above visualize? Notice any interesting observations/generalizations, and/or problems of the experiment design?
@@ -84,7 +84,6 @@ datv %>%
   ggplot(aes(x = vtype, y = F0, col = sp_gender)) + 
   geom_point() +
   facet_grid(. ~ wpos)
-
 ```
 
 **Exercise 2**
@@ -92,7 +91,9 @@ datv %>%
 From datv, create a plot which maps wpos on x-axis, F1 on y-axis, and speaker height (ht) color-coded. 
 
 ```{r}
-
+datv %>%
+  ggplot(aes(x = wpos, y = F1, col = ht)) + 
+  geom_point()
 ```
 
 Any generalizations or interesting observations?
@@ -178,10 +179,9 @@ datv_means2 %>%
 
 
 
-**Exercise 3** Generate a summary of datv which would enable you to examine whether and to what extent speaker height and speaker gender difference correlates with F1, F2, and F3 values, for each vowel. Include means and standard errors. Using the summary, generate a plot which maps height on the x-axis, mean F1 or F2 or F3 on the y-axis, and vowel types on separate facets/panels. You may also choose to color-code speaker gender.
+**Exercise 3** Generate a summary of datv which would enable you to examine whether and to what extent speaker height and speaker gender difference correlates with F1, F2, and F3 values, for each vowel. Include means and standard errors. Using the summary, generate a plot which maps height on the x-axis, F1 or F2 or F3 on the y-axis, and vowel types on separate facets/panels. You may also choose to color-code speaker gender.
 
 ```{r}
-
 datv_means_ht <- datv %>%
   group_by(sp_gender, ht, vtype) %>%
   summarise(meanF1 = mean(F1),
@@ -198,12 +198,11 @@ datv_means_ht
 
 datv_means_ht %>%
   ggplot(aes(x = ht, y = meanF1, fill = sp_gender)) + 
-  geom_point(stat = "identity") +
+  geom_bar(stat = "identity") +
   geom_errorbar(aes(ymin=meanF1-seF1, ymax=meanF1+seF1),
                 width=.2,                    # Width of the error bars
                 position=position_dodge(.9)) +
   facet_grid(. ~ vtype)
-
 ```
 
 **Exercise 4** Examine datc. What could be some useful things to summarize and plot? Discuss among groups. Then implement a few visualizations.
@@ -230,29 +229,4 @@ datc_means %>%
                 width=.2,                    # Width of the error bars
                 position=position_dodge(.9)) +
   facet_grid(. ~ wpos)
-
-```
-
-# Making things pretty
-
-The possibilities are endless! Below are a few basic settings. For ideas on color combinations, check this out: [http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/) If you are a fan of Wes Anderson movies, you can also check this out: [https://github.com/karthik/wesanderson](https://github.com/karthik/wesanderson)
-
-```{r}
-# Basic
-datv_means %>%
-  ggplot(aes(x = wpos, y = meanF0, fill = sp_gender)) + 
-  geom_bar(position=position_dodge(.9), stat = "identity") + 
-  ggthemes::theme_few() + 
-  ggthemes::scale_color_solarized() 
-
-# Wes Anderson
-install.packages("wesanderson")
-library(wesanderson)
-
-datv_means %>%
-  ggplot(aes(x = wpos, y = meanF0, fill = sp_gender)) + 
-  geom_bar(position=position_dodge(.9), stat = "identity") + 
-  ggthemes::theme_few() + 
-  scale_fill_manual(values = wes_palette("Royal1"))
-
 ```
