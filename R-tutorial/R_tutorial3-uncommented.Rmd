@@ -177,7 +177,7 @@ For count data, we can add them using the formula below:
 
 ```{r}
 
-## For the aspirated words subset:
+## For the lenis words subset:
 
 sum_lenword2$se = sqrt(sum_lenword2$perc*(1-sum_lenword2$perc)/sum_lenword2$n)
 sum_lenword2$uci = sum_lenword2$perc + 1.96*sum_lenword2$se
@@ -185,7 +185,7 @@ sum_lenword2$lci = sum_lenword2$perc - 1.96*sum_lenword2$se
 
 sum_lenword2
 
-## Now do the same for the lenis words subset:
+## Now do the same for the aspirated words subset:
 
 FILL IN
 
