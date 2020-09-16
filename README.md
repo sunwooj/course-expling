@@ -1,10 +1,8 @@
-## Experimental Linguistics: Fall 2019
+# Experimental Linguistics
 
-# Interested in getting a Starbucks gifticon? Participate in the following pilot experiment, which takes around 15 mins to complete! (Participation is optional and voluntary):
+A repository for tutorials covered in the Experimental Linguistics course. Please click on each folder for more materials on a given software/tool.
 
-* [Pilot experiment](https://sunwooj.github.io/veridicality/experiment-pilot/veridicality-pilot1-server)
-
-# Software download links
+## Software download links
 
 * [Praat: Mac](http://www.fon.hum.uva.nl/praat/download_mac.html)
 
@@ -12,6 +10,6 @@
 
 * [OpenSesame](https://osdoc.cogsci.nl/3.2/download/)
  
-# Tutorials
+## Tutorials
 
 * [OpenSesame: Beginner tutorial](https://osdoc.cogsci.nl/3.2/tutorials/beginner/)
