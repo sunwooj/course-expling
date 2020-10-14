@@ -1,6 +1,6 @@
 # IBEX Tutorial: Day 1
 
-Day 1 will cover the basics of creating simple acceptability judgement or other types of forced-choice task experiments. We will do a mini-replication of experiment 1  reported in our reading, Sprouse et al (2016). See [the first author's website](https://sprouse.uconn.edu/research.html) for more details on the data and the stimuli list. For a comprehensive step-by step guide, please consult [Brian Dillon and Rodica Ivan's LSA tutorial](https://xlingumass.github.io/resources/LSA_Minicourse_DillonIvan.pdf). The [official IBEX manual](https://github.com/addrummond/ibex/blob/master/docs/manual.md) will also be of use.
+Day 1 will cover the basics of creating simple acceptability judgement or other types of forced-choice task experiments. We will do a mini-replication of experiment 1  reported in our reading, Sprouse et al (2016), focusing just on whether-island constructions and wh-dependencies. See [the first author's website](https://sprouse.uconn.edu/research.html) for more details on the data and the stimuli list. For a comprehensive step-by step guide to using IBEX, please consult [Brian Dillon and Rodica Ivan's LSA tutorial](https://xlingumass.github.io/resources/LSA_Minicourse_DillonIvan.pdf). The [official IBEX manual](https://github.com/addrummond/ibex/blob/master/docs/manual.md) will also function as an indispensible reference if you want to be more flexible with your experiment designs.
 
 ## 0. Getting started
 
@@ -36,61 +36,56 @@ We'll now fill in this empty matrix, first with a list of possible trials. The s
 
 * The first element: Again a matrix `[ ]`, in the case of target trials, consisting of:
     + TrialType: Is it a target or filler/control trial? We will label each as `main` and `fill`
-    + TrialConditions: Which experimental condition is it? Recall that Sprouse et al. (2016) had 4 conditions from a 2x2 design (factor 1: long distance dependency or not? / factor 2: complex structure (island) or not?). We will focus only on whether islands and wh Let's label each as follows:
-        + `every-yesres`: every, resultative 
-        + `every-nores`: every, non-resultative
-        + `each-yesres`: each, resultative
-        + `each-nores`: each, non-resultative
+    + TrialConditions: Which experimental condition is it? Recall that Sprouse et al. (2016) had 4 conditions from a 2x2 design (factor 1: long distance dependency or not? / factor 2: complex structure (island) or not?). Since we will focus only on whether islands and wh-dependencies for now, we can label each as follows:
+        + `isl-short`: island, short
+        + `isl-long`: island, long
+        + `non-short`: non-island, short
+        + `non-long`: non-island, long
     + ItemNum: Item number; 1, 2, 3, 4, etc.
-* The second element: `ControllerType`. Here you specify the type of Controller you want to use, which will implement the main task in the trial. Commonly used Controllers in offline experiments are `AcceptabilityJudgement` (often used for implementing naturalness rating tasks involving a series of sentences) and `Question` (forced choice tasks). Though the main task involved in the present experiment is a binary forced-choice task, it calls for not just a question/answer pair, but also a sentence associated with the question. We will therefore use the `AcceptabilityJudgement` Controller, which allows for the inclusion of both sentences and questions arguments, and use binary forced choice options instead of a 7 point scale.
+* The second element: `ControllerType`. Here you specify the type of Controller you want to use, which will implement the main task in the trial. Commonly used Controllers in experiments which gather offline measures are `AcceptabilityJudgement` (often used for implementing naturalness rating tasks involving a series of sentences) and `Question` (forced choice tasks). We will use the `AcceptabilityJudgement` Controller, and use a standard 7 point Likert scale.
 * The third element: `{ArgumentsToControllers}`. This is a list specifying the values of the arguments called for by the Controller above. Different types of Controllers call for different types of obligatory arguments. Consult the documentation in the [official manual](https://github.com/addrummond/ibex/blob/master/docs/manual.md) to check which arguments a given Controller calls for. The `AcceptabilityJudgement` Controller, for instance, calls for values of `s` (the sentence), `q` (the question), and `as: ["", "", ...]` (the scale or the options that will function as answer choices to the questions).
 
 Here is an example of an element in the `items` list, which instantiates a specific condition-item pair (i.e.,~a potential trial). Proper indentations facilitate easy recognition of the components that make up the element, so change lines and introduce tab spaces in appropriate junctures.
 
 ```
-[["main-every-yesres", 1], "AcceptabilityJudgment", {
-    s: "A maid polished every mirror spotless.", 
+[["main-isl-short", 1], "AcceptabilityJudgment", {
+    s: "Who thinks that Paul stole the necklace?", 
     q: "Please click on the more likely interpretation of the sentence."
-    as: ["Each mirror was polished by a possibly different maid.", 
-        "All the mirrors were polished by the same maid."]
+    as: ["1", "2", "3", "4", "5", "6", "7"]
         }
     ]
 ```
 
-Each item (in this case, item 1), is associated with 4 conditions, though given the current experiment design, a given participant will see the item instantiated in only one of the 4 possible conditions. Create the rest of the 3 additional condition-item pairs for item 1 and add them in the `items` matrix, making sure to put a comma between these potential trials. (Consult `stimuli-list.txt`.) Your `items` variable should now look as follows: 
+Each item (in this case, item 1), is associated with 4 conditions, though given the current experiment design, a given participant will see the item instantiated in only one of the 4 possible conditions. Create the rest of the 3 additional condition-item pairs for item 1 and add them in the `items` matrix, making sure to put a comma between these potential trials. (Consult `sprouse-2016-materials-english.xlsx`, downloaded from the author's website.) Your `items` variable should now look as follows: 
 
 ```
 var items = [
 
-    [["main-every-yesres", 1], "AcceptabilityJudgment", {
-        s: "A maid polished every mirror spotless.", 
-        q: "Please click on the more likely interpretation of the sentence.",
-        as: ["Each mirror was polished by a possibly different maid until it was spotless.", 
-            "All the mirrors were polished by the same maid until they were spotless."]
+    [["main-non-short", 1], "AcceptabilityJudgment", {
+        s: "Who thinks that Paul stole the necklace?", 
+        q: "How natural does the following sentence sound?"
+        as: ["1", "2", "3", "4", "5", "6", "7"]
             }
         ],
 
-    [["main-every-nores", 1], "AcceptabilityJudgment", {
-        s: "A maid polished every mirror.", 
-        q: "Please click on the more likely interpretation of the sentence.",
-        as: ["Each mirror was polished by a possibly different maid.", 
-            "All the mirrors were polished by the same maid."]
+    [["main-non-long", 1], "AcceptabilityJudgment", {
+        s: "What does the detective think that Paul stole?", 
+        q: "How natural does the following sentence sound?",
+        as: ["1", "2", "3", "4", "5", "6", "7"]
             }
         ], 
 
-    [["main-each-yesres", 1], "AcceptabilityJudgment", {
-        s: "A maid polished each mirror spotless.",
-        q: "Please click on the more likely interpretation of the sentence.",
-        as: ["Each mirror was polished by a possibly different maid until it was spotless.", 
-            "All the mirrors were polished by the same maid until they were spotless."]
+    [["main-isl-short", 1], "AcceptabilityJudgment", {
+        s: "Who wonders whether Paul stole the necklace?", 
+        q: "How natural does the following sentence sound?",
+        as: ["1", "2", "3", "4", "5", "6", "7"]
             }
         ],
 
-    [["main-each-nores", 1], "AcceptabilityJudgment", {
-        s: "A maid polished each mirror.",  
-        q: "Please click on the more likely interpretation of the sentence.",
-        as: ["Each mirror was polished by a possibly different maid.", 
-            "All the mirrors were polished by the same maid."]
+    [["main-isl-long", 1], "AcceptabilityJudgment", {
+        s: "What does the detective wonder whether Paul stole?", 
+        q: "How natural does the following sentence sound?",
+        as: ["1", "2", "3", "4", "5", "6", "7"]
             }
         ]
 
@@ -107,12 +102,14 @@ Having included a list of elements that will instantiate main trials in the expe
 
 The only difference is that now the first argument is not a matrix, but a string. As fillers are generally not subject to latin square / counterbalancing considerations (the full set of fillers will always be shown in a given experiment), specification of an item number is not needed. 
 
-Here's an example of a filler element, added to the `items` list. In the `FillerType` slot, it is useful to include information on which response is the correct one, especially if you are using them as controls (below I keep track of this info with `good1` vs `good2` labels (i.e.,~the first vs. the second answer is the correct response)). It is also useful to include an identifier for the filler (below I keep track of this info with `01`, meaning the first filler item).
+Here's an example of a filler element, added to the `items` list. In the `FillerType` slot, it is useful to include information on which response is the grammatical one, especially if you are using them as controls (below I keep track of this info with `G` vs `UG` labels, following the author.) It is also useful to include an identifier for the filler (below I keep track of this info with keywords).
 
 ```
-["filler-good1-01", "AcceptabilityJudgment", {
-    s: "Only one boy enjoyed the show on the beach.",
-    as: ["Nobody but one boy enjoyed the show on the beach.", "Nobody enjoyed the show on the beach."]}
+["filler-1-G", "AcceptabilityJudgment", {
+    s: "It seems to him that Kim solved the problem.", 
+    q: "How natural does the following sentence sound?",
+    as: ["1", "2", "3", "4", "5", "6", "7"]
+        }
     ]
 ```
 
@@ -133,55 +130,43 @@ var defaults = [
 ];
 ```
 
-For instance, we can designate the default for the `q` argument of `AcceptabilityJudgement` as follows, and get rid of the `q` variable in the main `items` section. Your script should now look something like this:
+For instance, we can designate the default for the `q` argument of `AcceptabilityJudgement` as follows, and get rid of the `q` variable in the main `items` section. We can do the same for the `as` variable, which determines the scale (options) associated with the task. Your script should now look something like this:
 
 ```
 var defaults = [
     "AcceptabilityJudgment", {
-        q: "Please choose the more likely interpretation."
+        q: "How natural does the sentence above sound?",
+        as: ["1", "2", "3", "4", "5", "6", "7"]
     }
 ];
 
 
 var items = [
 
-    [["main-every-yesres", 1], "AcceptabilityJudgment", {
-        s: "A maid polished every mirror spotless.", 
-        as: ["Each mirror was polished by a possibly different maid until it was spotless.", 
-            "All the mirrors were polished by the same maid until they were spotless."]
+    [["main-non-short", 1], "AcceptabilityJudgment", {
+        s: "Who thinks that Paul stole the necklace?"
             }
         ],
 
-    [["main-every-nores", 1], "AcceptabilityJudgment", {
-        s: "A maid polished every mirror.", 
-        as: ["Each mirror was polished by a possibly different maid.", 
-            "All the mirrors were polished by the same maid."]
+    [["main-non-long", 1], "AcceptabilityJudgment", {
+        s: "What does the detective think that Paul stole?"
             }
         ], 
 
-    [["main-each-yesres", 1], "AcceptabilityJudgment", {
-        s: "A maid polished each mirror spotless.",
-        as: ["Each mirror was polished by a possibly different maid until it was spotless.", 
-            "All the mirrors were polished by the same maid until they were spotless."]
+    [["main-isl-short", 1], "AcceptabilityJudgment", {
+        s: "Who wonders whether Paul stole the necklace?"
             }
         ],
 
-    [["main-each-nores", 1], "AcceptabilityJudgment", {
-        s: "A maid polished each mirror.",  
-        as: ["Each mirror was polished by a possibly different maid.", 
-            "All the mirrors were polished by the same maid."]
+    [["main-isl-long", 1], "AcceptabilityJudgment", {
+        s: "What does the detective wonder whether Paul stole?"
             }
-        ],
-
-    ["filler-good1-01", "AcceptabilityJudgment", {
-    s: "Only one boy enjoyed the show on the beach.",
-    as: ["Nobody but one boy enjoyed the show on the beach.", "Nobody enjoyed the show on the beach."]}
-    ]
+        ]
 
     ];
 ```
 
-The rest is easy, though a bit space consuming. (Not really time consuming though, copy/paste will do wonders!) You do the same for the rest of the experimental items as you did for item 1, making sure that the 4 conditions appear in the same order in the `TrialConditions` spot as above (this is because the built-in Latin Square ordering generator requires this). Our mock experiment will only have 4 items (so that each condition appears exactly once in the experiment) provided in `stimuli-list.txt`. This will lead you to add 4 x 4 = 16 elements inside the `items` variable. The `data-includes` folder of our current repository contains a script `tutorial1-1.js` which includes 2 items and 2 fillers. *Your task is to complete this template so that it includes 4 items and 4 fillers.*
+The rest is easy, though a bit space consuming. (Not really time consuming though, copy/paste will do wonders!) You do the same for the rest of the experimental items as you did for item 1, making sure that the 4 conditions appear in the same order in the `TrialConditions` spot as above (this is because the built-in Latin Square ordering generator requires this). Our mock experiment will only have 4 items (so that each condition appears exactly once in the experiment). This will lead you to add 4 x 4 = 16 elements inside the `items` variable. *Your task is to complete this template so that it includes 4 items and 4 fillers. Consult the list of materials provided by the author to access more items.*
 
 
 ## 3. Adding introductions and exits
@@ -216,6 +201,14 @@ The experiment is now more or less ready to be run!
 ## Running, collecting data, and troubleshooting
 
 To run your experiment, go to the repository of your experiment in [IBEX Farm](http://spellout.net/ibexfarm/) and update the javascript under `data_includes`. You can do that by clicking on `upload a new version`, or by clicking on `upload a file to this directory` and deleting the old `example_data.js` template. The link provided on top of the page is your link to the experiment. People can click on this link to take your experiment, and results will be saved under the `results` section. They are saved in .csv format (comma separated values), which can be easily opened in Excel and other Spreadsheet programs. If you run into errors while running the experiment, it's likely that a comma is missing somewhere in the javascript or its syntax is off somewhere. One way to get an idea of where things went wrong, is to use View > Developer > Javascript Console in Google Chrome (or right click, Inspect). When building an experiment using IBEX, a lot of other people may have encountered and resolved similar problems as you! Check out [IBEX Discussion Group](https://groups.google.com/forum/#!forum/ibexexperiments) to search for answers. You may end up getting a lot of help and insights.
+
+## In-lab assignment: part I
+
+Complete the experiment by adding 4 items, as well as the introduction and the exit slides. Submit the resulting experiment as a URL. For ease of reference, make your URL have the following type of address:
+
+```
+https://spellout.net/ibexexps/yourIBEX-ID/200610134-jeong-exp1/experiment.html
+```
 
 
 
