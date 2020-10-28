@@ -84,12 +84,20 @@ var items = [
     }
 ],
 
-// A sample trial with an auditory stimulus
-["practice-audio", "MyController2",
+// Sample trials with auditory stimuli
+["practice-audio1", "MyController2",
     {
-        html: "<center><audio controls><source src='http://hosting02.snu.ac.kr/~sunwooj/experiments/veridicality/painter-al-jul1-p4.wav' type='audio/wav'></audio></center>",
-        q: "Which is true?",
-        as: ["Is a painter", "Is not a painter"]
+        html: "<center><audio controls><source src='https://sunwoojeong.com/experiments/veridicality/exp1b/exp1b-stimuli/year-al-pq-nv.wav' type='audio/wav'></audio></center>",
+        q: "화자의 발화를 고려했을때, 다음 문장은 사실입니까?: 내란이 을미년에 일어났다.",
+        as: ["네", "아니오"]
+    }
+],
+
+["practice-audio2", "MyController2",
+    {
+        html: "<center><audio controls><source src='https://sunwoojeong.com/experiments/veridicality/exp1b/exp1b-stimuli/year-al-pq-mv.wav' type='audio/wav'></audio></center>",
+        q: "화자의 발화를 고려했을때, 다음 문장은 사실입니까?: 내란이 을미년에 일어났다.",
+        as: ["네", "아니오"]
     }
 ],
 
@@ -107,7 +115,7 @@ var shuffleSequence = seq(
     "setcounter",
     "introduction",
     rshuffle(startsWith("main")),
-    "practice-audio",
+    rshuffle(startsWith("practice")),
     "exitqs");
 
 
