@@ -354,12 +354,6 @@ You might want to run an experiment that asks multiple survey-type questions in 
 <input type='radio' name='dialect' value='jl' /> 전라도
 <input type='radio' name='dialect' value='gn' /> 경상도
 
-<p>Check all that applies.</p>
-
-<input type='checkbox'/> rapper &nbsp;&nbsp; 
-<input type='checkbox'/> dancer &nbsp;&nbsp; 
-<input type='checkbox'/> director </p>
-
 <p>Any comments?</p>
 
 <input type='text'/>
@@ -381,3 +375,93 @@ You can upload the `demographic-form.html` form under `chunk_includes` in the [I
 ```
 
 The rest is as in Day 1! Define the `shuffleSequence`, upload the .js under `data_includes`, and you should be good to go!!
+
+
+
+# IBEX Tutorial: Our causative pilot
+
+Consult the items in the `pilot-materials` folder, as well as the [official IBEX manual](https://github.com/addrummond/ibex/blob/master/docs/manual.md).
+
+## The trials
+
+Your main trials should be implemented as follows:
+
+```
+[["main-0-causative", 1], "MyController1", {
+        html: "<center><img src='https://sunwooj.github.io/course-expling/IBEX/images/0-causative.png' alt='imagefile' width='480'></center>",
+        q: "위 상황에 대해 지민이는 얼마나 책임이 있다고 생각합니까?" 
+    },
+    "MyController2", {
+        html: "<center><img src='https://sunwooj.github.io/course-expling/IBEX/images/0-causative.png' alt='imagefile' width='480'></center>",
+        html2: "방금 읽으신 상황에서 지민이는 얼마를 변상해야 한다고 생각합니까? <br> (만원 단위로 숫자만 기입해 주세요. 변상이 필요 없다 생각하실 경우 0을 기입해 주세요.) <br> <input type='text' class='obligatory'>"
+    }
+],
+```
+
+## Fine-tuning the intro
+
+You can make the intro fancier, as follows:
+
+```
+["introduction", "Message", { 
+    html: { include: "tutorial-intro.html" },
+    consentRequired: true,
+    consentMessage: "설명서를 읽었으며 실험 참여에 동의합니다.",
+    consentErrorMessage: "실험에 참여하시려면 동의 버튼을 클릭해 주시기 바랍니다."
+    }
+],
+```
+
+It might also be useful to have a separate explanation slide. We can add that right after the introduction slide, as follows:
+
+```
+["explanation", "Message", {
+    html: ["div",
+        ["p", "본 실험에서 귀하는 두 가지 상황에 대한 묘사를 읽게 되실 것입니다. 각 상황을 읽으신 후 (1) 상황 속 인물이 묘사된 사건에 대해 얼마나 책임이 있는지, 또 (2) 그 인물이 얼마만큼의 변상을 해야 되는지 판단해 주시기 바랍니다."]],
+    continueMessage: "본 실험을 시작하시려면 여기를 클릭해 주세요."
+    }
+],
+```
+
+## Pause between items
+
+It might also be useful to add a transition between two items (situations). For this, add a separator at the onset of the `items` list (right before the counter).
+
+```
+["sep", "Separator", { }],
+
+["setcounter", "__SetCounter__", { }],
+```
+
+We then have to change the `shuffleSequence` accordingly, as follows.
+
+```
+var shuffleSequence = seq(
+    "setcounter",
+    "introduction",
+    "explanation",
+    sepWith("sep", rshuffle(startsWith("main"))),
+    // rshuffle(startsWith("main")),
+    "exitqs");
+```
+
+## Setting the defaults
+
+Finally, set the defaults as follows:
+
+```
+var defaults = [
+    "MyController1", {
+        as: ["1", "2", "3", "4", "5", "6", "7"],
+        presentAsScale: true,
+        instructions: "숫자 키를 사용하시거나 박스를 클릭해 주세요.",
+        leftComment: "(전혀 책임 없음)", rightComment: "(매우 책임 있음)"
+    },
+    "Separator", {
+        normalMessage: "다음 상황으로 넘어 가시려면 키보드에서 아무 키나 눌러주세요."
+    },
+    "MyController2", {
+        continueMessage: "다음 단계로 넘어가시려면 여기를 클릭해 주세요."
+    }
+];
+```
