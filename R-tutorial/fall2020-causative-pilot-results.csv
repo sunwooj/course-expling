@@ -1,0 +1,73 @@
+﻿subject_ID,trialtype,morpheme,framing,,blame,liability,RT,language,language_comment,gender,age,dialect,source
+34f49b702fd099637a67ca06fde27eb5,main,i,inchoative,,3,200,30773,영어,,F,20s,seoul,201816682-kim
+34f49b702fd099637a67ca06fde27eb5,main,0,inchoative,,7,700,17679,영어,,F,20s,seoul,201816682-kim
+8b8726b681ef97276ec32e9fae4d1fca,main,0,causative,,7,1000,7375,영어,없습니다,F,20s,seoul,201816682-kim
+8b8726b681ef97276ec32e9fae4d1fca,main,i,causative,,7,1000,15503,영어,없습니다,F,20s,seoul,201816682-kim
+149090c2ba7e4c0e8848b17fe96ca3e6,main,i,causative,,7,1000,28716,영어,,F,20s,seoul,201816682-kim
+149090c2ba7e4c0e8848b17fe96ca3e6,main,0,causative,,7,1000,34744,영어,,F,20s,seoul,201816682-kim
+926b00664f8b688c7ca0faaf90acc019,main,i,causative,,6,900,24668,영어,,F,20s,chungcheong,201816682-kim
+926b00664f8b688c7ca0faaf90acc019,main,0,causative,,7,1000,9206,영어,,F,20s,chungcheong,201816682-kim
+cd2bd1b20ee3bce2218a2d5f3c163df0,main,0,inchoative,,6,500,20940,,,F,20s,seoul,201611934-park
+cd2bd1b20ee3bce2218a2d5f3c163df0,main,i,inchoative,,6,100,19539,,,F,20s,seoul,201611934-park
+49f4722225a753ec0d36adc660f45cfd,main,0,inchoative,,6,100,96858,,,F,50s,seoul,201611934-park
+49f4722225a753ec0d36adc660f45cfd,main,i,inchoative,,6,50,32919,,,F,50s,seoul,201611934-park
+6639fd9fe004cf6f676562316f055562,main,i,inchoative,,5,600,35702,,,M,50s,jeolla,201611934-park
+6639fd9fe004cf6f676562316f055562,main,0,inchoative,,5,700,56320,,,M,50s,jeolla,201611934-park
+00e80dcb73a962add55e51d69fc00696,main,0,causative,,7,700,127759,,,M,20s,seoul,201611934-park
+00e80dcb73a962add55e51d69fc00696,main,i,causative,,7,600,55522,,,M,20s,seoul,201611934-park
+d9456c0faf679de87f751b45cb988728,main,i,causative,,2,3000,49192,영어,없습니다,M,20s,seoul,201810042-shin
+d9456c0faf679de87f751b45cb988728,main,0,causative,,6,3000,22356,영어,없습니다,M,20s,seoul,201810042-shin
+33fe3a5e79c7e9932ed274687c5692c7,main,0,inchoative,,7,500,32864,영어%2C 일본어,,M,20s,gyeongsang,201810042-shin
+33fe3a5e79c7e9932ed274687c5692c7,main,i,inchoative,,7,300,26022,영어%2C 일본어,,M,20s,gyeongsang,201810042-shin
+d9456c0faf679de87f751b45cb988728,main,i,causative,,7,1000,58422,,,F,40s,seoul,201810042-shin
+d9456c0faf679de87f751b45cb988728,main,0,causative,,7,1000,15075,,,F,40s,seoul,201810042-shin
+d9456c0faf679de87f751b45cb988728,main,i,inchoative,,1,0,52969,영어,,M,50s,jeju,201810042-shin
+d9456c0faf679de87f751b45cb988728,main,0,inchoative,,7,1000,34735,영어,,M,50s,jeju,201810042-shin
+e3c02499d3b91100fbda9d816c55b93c,main,i,causative,,1,1,109074,없음,실험실 문을 잠궈야하지 않을까요,M,50s,seoul,201712610-lee
+e3c02499d3b91100fbda9d816c55b93c,main,0,causative,,1,1,55452,없음,실험실 문을 잠궈야하지 않을까요,M,50s,seoul,201712610-lee
+07c6d6acce15d120995edbc16a5b5644,main,i,inchoative,,7,500,20329,영어,,F,20s,seoul,201712610-lee
+07c6d6acce15d120995edbc16a5b5644,main,0,inchoative,,7,1000,14523,영어,,F,20s,seoul,201712610-lee
+64a804dde898e9b06391d4ee343b5c26,main,0,causative,,5,600,22515,영어,,M,20s,seoul,201712610-lee
+64a804dde898e9b06391d4ee343b5c26,main,i,causative,,5,600,62573,영어,,M,20s,seoul,201712610-lee
+827d72929b35ed758f3aaa0e3040255a,main,i,causative,,7,1000,64561,일본어%2C 영어,,F,20s,seoul,201712610-lee
+827d72929b35ed758f3aaa0e3040255a,main,0,causative,,7,1000,28282,일본어%2C 영어,,F,20s,seoul,201712610-lee
+dbe2f03f6098dd3761ba8a53708f8a5d,main,0,causative,,7,200,8936,영어 스페인어,효모나 실험 기구들의 경제적 가치에 대한 멘션이 있으면 더 구체적으로 피해액에 대한 연상이 가능할 것 같습니당,M,20s,seoul,201712610-lee
+dbe2f03f6098dd3761ba8a53708f8a5d,main,i,causative,,7,300,13671,영어 스페인어,효모나 실험 기구들의 경제적 가치에 대한 멘션이 있으면 더 구체적으로 피해액에 대한 연상이 가능할 것 같습니당,M,20s,seoul,201712610-lee
+c21cd0067a8d473b4eb6502f635a349f,main,0,causative,,7,1000,37824,,,F,40s,seoul,201712610-lee
+c21cd0067a8d473b4eb6502f635a349f,main,i,causative,,7,1000,27645,,,F,40s,seoul,201712610-lee
+88c278e147112279a2f25fa628bf107b,main,0,inchoative,,7,5000,13742,영어 중국어 프랑스어,,F,20s,seoul,201712610-lee
+88c278e147112279a2f25fa628bf107b,main,i,inchoative,,5,2500,12803,영어 중국어 프랑스어,,F,20s,seoul,201712610-lee
+54ef280c3ec175c671f3dc44a96cdcd1,main,0,causative,,7,800,11971,영어/프랑스어,,F,20s,seoul,201712610-lee
+54ef280c3ec175c671f3dc44a96cdcd1,main,i,causative,,7,1000,10920,영어/프랑스어,,F,20s,seoul,201712610-lee
+af7b439bbc7da4c0b26f81cfc991466e,main,i,inchoative,,6,500,37373,영어,재밌어용,M,20s,seoul,201712610-lee
+af7b439bbc7da4c0b26f81cfc991466e,main,0,inchoative,,6,800,37059,영어,재밌어용,M,20s,seoul,201712610-lee
+357c769eb93053400ab6d9165fb5a0ac,main,i,inchoative,,7,700,14492,영어,,F,20s,seoul,201712610-lee
+357c769eb93053400ab6d9165fb5a0ac,main,0,inchoative,,7,700,12035,영어,,F,20s,seoul,201712610-lee
+9992e70c491e82b8ce67a401342afeae,main,0,inchoative,,3,1000,29648,영어,아니오,F,20s,jeolla,201712610-lee
+9992e70c491e82b8ce67a401342afeae,main,i,inchoative,,4,1000,13803,영어,아니오,F,20s,jeolla,201712610-lee
+bebbc34d7edb77e63d4b30e97365be75,main,i,causative,,7,1000,30931,영어%2C 불어,,F,20s,seoul,201712610-lee
+bebbc34d7edb77e63d4b30e97365be75,main,0,causative,,7,1000,10858,영어%2C 불어,,F,20s,seoul,201712610-lee
+d54f9b1bd9f65f0aa67dc1dd5a98543b,main,0,causative,,5,600,84979,영어%2C 러시아어%2C 프랑스어,,F,20s,seoul,201712610-lee
+d54f9b1bd9f65f0aa67dc1dd5a98543b,main,i,causative,,7,900,21344,영어%2C 러시아어%2C 프랑스어,,F,20s,seoul,201712610-lee
+b97f85fe116c1200b5a9ec4f734a00c4,main,0,inchoative,,5,500,28174,영어%2C 일어%2C 스페인어,,F,20s,seoul,201712610-lee
+b97f85fe116c1200b5a9ec4f734a00c4,main,i,inchoative,,3,0,19136,영어%2C 일어%2C 스페인어,,F,20s,seoul,201712610-lee
+50b134a14e02f90d06bd9f264f7cb1c9,main,i,causative,,7,800,26251,외국어로서 영어,수고하세요,M,20s,seoul,201712610-lee
+50b134a14e02f90d06bd9f264f7cb1c9,main,0,causative,,5,500,22952,외국어로서 영어,수고하세요,M,20s,seoul,201712610-lee
+f1cd11b33d187b44656ab4b5b7f98cc7,main,0,inchoative,,4,300,55801,영어%2C 일본어,ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ,M,20s,seoul,201412759-lee
+f1cd11b33d187b44656ab4b5b7f98cc7,main,i,inchoative,,2,100,32464,영어%2C 일본어,ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ,M,20s,seoul,201412759-lee
+c81ea5086b75587bd4360679aaa6dcce,main,0,causative,,4,200,16290,영어%2C 러시아어,^ㅇ^,F,20s,seoul,201412759-lee
+c81ea5086b75587bd4360679aaa6dcce,main,i,causative,,7,999,6408,영어%2C 러시아어,^ㅇ^,F,20s,seoul,201412759-lee
+a7370b2da4259ff58d688dad8e6fce42,main,i,causative,,6,500,37373,영어,,M,20s,seoul,201412759-lee
+a7370b2da4259ff58d688dad8e6fce42,main,0,causative,,4,300,36279,영어,,M,20s,seoul,201412759-lee
+81cc96e126ae2673d95c1c9eebf98fd2,main,i,inchoative,,5,1000,20169,영어,,F,20s,gyeongsang,201412759-lee
+81cc96e126ae2673d95c1c9eebf98fd2,main,0,inchoative,,4,700,27426,영어,,F,20s,gyeongsang,201412759-lee
+d60a46f513db465d4221f847bd566eda,main,0,causative,,5,100,24044,영어%2C 중국어,대학원생이 화가 나겠군요,M,20s,gangwon,201412759-lee
+d60a46f513db465d4221f847bd566eda,main,i,causative,,7,800,30394,영어%2C 중국어,대학원생이 화가 나겠군요,M,20s,gangwon,201412759-lee
+088a011c41c283e8fd8f55dec4c2aa89,main,0,causative,,3,300,23256,영어,,M,20s,seoul,201412759-lee
+088a011c41c283e8fd8f55dec4c2aa89,main,i,causative,,6,900,62597,영어,,M,20s,seoul,201412759-lee
+d4fe659e107a10f299ed6f08ce0fb126,main,0,causative,,7,1000,27281,,,F,20s,seoul,201412759-lee
+d4fe659e107a10f299ed6f08ce0fb126,main,i,causative,,7,1000,23341,,,F,20s,seoul,201412759-lee
+ca0f242d5c45316d79d25c1fadb771f6,main,0,inchoative,,7,500,59060,영어,없음,M,20s,seoul,201412759-lee
+ca0f242d5c45316d79d25c1fadb771f6,main,i,inchoative,,5,300,45437,영어,없음,M,20s,seoul,201412759-lee
+cb68a9b2eb77ff983fe78b381f0be736,main,i,inchoative,,5,500,78430,영어%2C 일본어,,M,20s,seoul,201412759-lee
+cb68a9b2eb77ff983fe78b381f0be736,main,0,inchoative,,4,200,81571,영어%2C 일본어,,M,20s,seoul,201412759-lee

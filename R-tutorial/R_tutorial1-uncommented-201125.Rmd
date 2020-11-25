@@ -35,45 +35,49 @@ This intro will describe a few concepts that you will need to know, using the fa
 The basic data structure we're working with is the data frame, or `tibble` (in the `tidyverse` reimplementation). 
 Data frames have rows and columns, and each column has a distinct data type. The implementation in Python's `pandas` is distinct but most of the concepts are the same. 
 
-`iris` is a data frame showing the measurements of a bunch of different instances of iris flowers from different species. (Sepals are the things outside the petals of the flowers that protect the petals while it's blooming, petals are the actual petals of the flower). Let's examine how the data set looks like, using the `head` command:
+`iris` is a data frame showing the measurements of a bunch of different instances of iris flowers from different species. (Sepals are the things outside the petals of the flowers that protect the petals while it's blooming, petals are the actual petals of the flower). Let's examine how the data set looks like, using the `head` command (and alternative: `summary`):
 
 ```{r}
 head(iris)
+summary(iris)
 ```
 
 > **Exercise.** There are many ways to get a particular value of a variable in a data frame. You can use `$` to access a column, as in `iris$Sepal.Length` or you can treat the data frame as a matrix, e.g. `iris[1,1]` or even as a list, as in `iris[[1]]`. You can also mix numeric references and named references, e.g. `iris[["Sepal.Length"]]`. Turn to your neighbor (and/or google) and find a way to access the petal length of the third iris in the dataset (row 3).
 
 ```{r}
-# fill me in with calls to the iris dataset that all return the same cell (third from the top, Petal Length).
+# write calls to the iris dataset that all return the same cell (third from the top, Petal Length).
 
 iris$Sepal.Length[3]
-
+head(iris)
 ```
 
 
-Now let's take a look at our vowel data from assignment 1. You can call in the data using the `read.csv` command. You don't need to set the working directory as long as the .csv and the R script/markdown file are under the same folder. If you do need to set the working directory, try using relative paths rather than absolute ones.
+Now let's take a look at the vowel/VOT data you collected from assignment 1 (Korean stops) and assignment 4 (Korean causatives/inchoatives and linguistic framing). You can call in the data using the `read.csv` command. You don't need to set the working directory as long as the .csv and the R script/markdown file are under the same folder. If you do need to set the working directory, try using relative paths rather than absolute ones.
 
 ```{r}
 ## load the data
-datv <- read.csv('asmt1-korean-vowels.csv')
-datc <- read.csv('asmt1-korean-stops.csv')
-
+# Your Korean stops (F0/VOT) data
+datv <- read.csv('fall2020-stops-F0-combined.csv')
+# A sample survey data
 dats <- read.csv('qualtrics-processed-sample.csv')
+# Your Korean causatives/inchoatives data
+datc <- read.csv('fall2020-causative-pilot-results.csv')
+
+
 
 ## set working directory (absolute path like the one below not recommended)
 setwd("/Users/sunwoojeong/Documents/ExpLing2019/R-tutorial/")
+## relative paths
+setwd("../R-tutorial/")
 ```
 
 > **Exercise.** Examine what columns are in the dat dataset.
 
 ```{r}
-# fill me in with a command that could give us an overview of the data structure of datv and datc
-
+# write a command that could give us an overview of the data structure of datv and datc
 head(datv)
 head(datc)
-
-head(dats)
-
+summary(datv)
 ```
 
 ## Tidy data
@@ -104,14 +108,18 @@ Everything you typically want to do in statistical programming uses **functions*
 
 ```{r}
 mean(iris$Petal.Length)
+
+head(iris)
 ```
 
 We're going to call this **applying** the function `mean` to the variable `Petal.Length`.
 
-Pipes are a way to write strings of functions more easily. They bring the first argument of the function to the bedginning. So you can write:
+Pipes are a way to write strings of functions more easily. They bring the first argument of the function to the beginning. So you can write:
 
 ```{r}
 iris$Petal.Length %>% mean
+
+
 ```
 
 That's not very useful yet, but when you start **nesting** functions, it gets better. 
@@ -119,7 +127,9 @@ That's not very useful yet, but when you start **nesting** functions, it gets be
 ```{r}
 mean(unique(iris$Petal.Length))
 
-iris$Petal.Length %>% unique() %>% mean(na.rm=TRUE)
+iris$Petal.Length %>% 
+  unique() %>% 
+  mean(na.rm=TRUE)
 ```
 
 or 
@@ -149,40 +159,33 @@ Piped version:
 
 ```{r}
 # fill in the piped version!
-iris$Species %>% 
-  unique %>%
-  length
+iris$Species %>% unique %>%
+  length 
+
+summary(iris$Species)
 ```
 
-> **Exercise.** Using piped functions, figure out the mean of height and the mean of F1, F2. F3, and F0 from datv. Also figure out number of heights (which likely reduces to number of subjects).
+> **Exercise.** Using piped functions, figure out the the mean of F0 startpoints and midpoints from datv. Also figure out number of speakers.
+
+```{r}
+# fill in the piped version!
+head(datv)
+
+datv$MidF0 %>% mean
+
+datv$StartF0 %>% mean
+
+mean(datv$MidF0)
+
+```
+
+> **Exercise.** Using piped functions, figure out the the mean blame rating from datc. Also figure out number of participants.
 
 ```{r}
 # fill in the piped version!
 
-datv$F0 %>%
-  mean
+datc$blame %>% mean
 
-datv$F1 %>%
-  mean
-
-datv$F2 %>%
-  mean
-
-datv$F3 %>%
-  mean
-
-datv$F1 %>%
-  unique %>%
-  mean
-
-summary(datv$F0)
-
-datv$ht %>% 
-  unique %>%
-  mean
-
-datv$ht %>% 
-  mean
 ```
 
 
@@ -190,7 +193,7 @@ datv$ht %>%
 
 Reference: [R4DS Chapter 5](http://r4ds.had.co.nz/transform.html)
 
-Let's try manipulateing our data using "verbs" from `dplyr`. We'll only take a look at four verbs (but there are many other useful ones):
+Let's try manipulating our data using "verbs" from `dplyr`. We'll only take a look at four verbs (but there are many other useful ones):
 
 + `filter` - remove rows by some logical condition
 + `mutate` - create new columns 
@@ -202,27 +205,35 @@ Let's try manipulateing our data using "verbs" from `dplyr`. We'll only take a l
 
 Inspect the various variables before you start any analysis. You can use `summary`, or look at each variable by itself.
 ```{r}
-summary(datc)
-head(datc)
+# The datv data set
+summary(datv)
+summary(datv$stop)
 
-unique(datc$stop)
+unique(datv$sp)
 
-datc$word %>%
+datv$stop %>%
  unique %>%
  length
+
+# The datc data set
+summary(datc)
+summary(datc$framing)
 ```
 
 Alternatively, you can use interactive tools like `View` 
 
 ```{r}
 View(datv)
+View(datc)
 ```
 
 ## Filtering & Mutating
 
 There are lots of reasons you might want to remove *rows* from your dataset, including getting rid of outliers, selecting subpopulations, etc. `filter` is a verb (function) that takes a data frame as its first argument, and then as its second takes the **condition** you want to filter on. 
 
-So if you wanted to look only at people with heights over 164, you could do this. (Note you can give two conditions, could also do `ht > 164 & ht < 178`). (equivalent: `filter(datv, ht > 164, ht < 178)`)
+So if you wanted to look only at F0 values between 140 to 280, you could do this. (Note that you can give two conditions, could also do `StartF0 > 140 & Start F0 < 280`). 
+
+For non-numeric variables (e.g., certain factors), you can use the standard `==` and `!=` statements
 
 Note that we're going to be using pipes with functions over data frames here. The way this works is that:
 
@@ -232,50 +243,56 @@ Note that we're going to be using pipes with functions over data frames here. Th
 
 This is essentially the huge insight of `dplyr`: you can chain verbs into readable and efficient sequences of operations over dataframes, provided 1) the verbs all have the same syntax (which they do) and 2) the data all have the same structure (which they do if they are tidy). 
 
-OK, so filtering:
+An example of filtering:
 
 ```{r}
+# datv: Just the F0 values between a certain range
 datv %>%
-  filter(ht > 164, 
-         ht < 178) 
+  filter(StartF0 < 280,
+         StartF0 > 140)
 
-datv_av <-
-  datv %>%
-    filter(ht > 164, 
-          ht < 178) 
-
-head(datv_av)
-```
-
-**Exercise.** Filter out only the `iso` trial in the `wpos` condition, and 2nd vowel position (2) in the `vpos` condition, and save that as a separate data frame.
-
-```{r}
+# datv: Just the female speakers
 datv %>%
-  filter(wpos == "iso", 
-         vpos == "2")
+  filter(gender == "F")
 
-dat %>%
-  filter(key_resp.keys != "None")
-
-datv_iso2 <-
-  datv %>%
-  filter(wpos == "iso", 
-         vpos == "2")
-
-head(datv_iso2)
-
-datv[datv$wpos == "iso" & datv$vpos == "2", ] # all the columns
-```
-
-**Exercise.** Examine the duration column of datc. Do you notice any problems? Fix it using filtering.
-
-```{r}
+# datc: Just the participants under 50s
 datc %>%
-  filter(duration != "NA")
+  filter(age != "50s")
 
-datc_clean <-
-  datc %>%
-  filter(duration != "NA")
+# If you want to actually save and work with the filtered data, assign it to a new data set (or change the name on the left the same as the one on the write, so that the changes can be overwritten)
+
+datv_r <- datv %>%
+  filter(StartF0 < 280,
+         StartF0 > 140)
+
+datv_f <- datv %>%
+  filter(gender == "F")
+
+datc2 <- datc %>%
+  filter(age != "50s")
+
+```
+
+**Exercise.** Filter out only the p,b,k,g trials in the `stop` condition, and female speakers in the `sp` condition, and save that as a separate data frame.
+
+```{r}
+
+
+```
+
+**Exercise.** Examine the EndF0 column of the datv data frame. Do you notice any problems? Fix it using filtering.
+
+```{r}
+
+head(datv)
+
+datv$EndF0[1]
+
+datv2 <- datv %>% filter(EndF0 != " --undefined--")
+
+
+datv2$EndF0 <- as.double(datv2$EndF0)
+head(datv2)
 ```
 
 
@@ -283,10 +300,10 @@ There are also times when you want to add or remove *columns*. You might want to
 
 ```{r}
 datv %>%
-  select(sp, ht, word, wpos, vtype, vpos, F0) 
+  select(sp, gender, stop, word, vowel, MidF0) 
 
 datv %>%
-  select(-group) 
+  select(-EndF0) 
 
 # learn about this with ?select
 ```
@@ -294,10 +311,10 @@ datv %>%
 Perhaps more useful is *adding columns*. You might do this perhaps to compute some kind of derived variable. `mutate` is the verb for these situations - it allows you to add a column. Let's add a slope column to our datc dataset.
 
 ```{r}
-datc_clean <- datc_clean %>%
-  mutate(slope = (datc_clean$v1F0on - datc_clean$v2F0off)/duration)
+datv2 <- datv2 %>%
+  mutate(slope = (StartF0 - EndF0)/(X.Duration.*1000))
 
-head(datc_clean$slope)
+head(datv2$slope)
 ```
 
 ## Standard psychological descriptives
@@ -305,12 +322,8 @@ head(datc_clean$slope)
 We typically describe datasets at the level of subjects, not trials. We need two verbs to get a summary at the level of subjects: `group_by` and `summarise` (kiwi spelling). Grouping alone doesn't do much.
 
 ```{r}
-datv %>%
+datv2 %>%
   group_by(sp) 
-
-datv_g <- 
-  datv %>%
-  group_by(sp)
 
 # What does it actually do? Does it do what we want it to do?
 ```
@@ -326,12 +339,44 @@ Where these two verbs shine is in combination. Because `summarise` applies funct
 So we can group by age or condition or whatever else we want and then carry out the same procedure, and all of a sudden we are doing something extremely useful!
 
 ```{r}
-datv_means <- 
-  datv %>%
-  group_by(sp, wpos) %>%
-  summarise(meanF0 = mean(F0))
+datv2 %>%
+  group_by(stop) %>%
+  summarise(meanMidF0 = mean(MidF0))
+
+
+datv_means <- datv2 %>%
+  group_by(stop) %>%
+  summarise(meanMidF0 = mean(MidF0))
+
 datv_means
 ```
 
 These summary data are typically very useful for plotting. (To be covered in next class!)
 
+**Exercise.** For datv, generate a summary of F0 mean according to (i) stop type, (ii) stop type and speaker gender.
+
+```{r}
+datv_means2 <- datv2 %>%
+  group_by(type) %>%
+  summarise(meanMidF0 = mean(MidF0))
+
+datv_means2
+
+datv_means3 <- datv2 %>%
+  group_by(type, gender) %>%
+  summarise(meanMidF0 = mean(MidF0))
+
+datv_means3
+```
+
+**Exercise.** For datc, generate a summary of liability rating according to morpheme and framing.
+
+```{r}
+datc_sum1 <- datc %>%
+  group_by(morpheme, framing) %>%
+  summarise(meanBlame = mean(blame))
+
+datc_sum1
+```
+
+**Exercise.** In preparation for the next lab class, think of other summaries that may be useful in visualizing/analyzing the data from assignments 1 and 4.
