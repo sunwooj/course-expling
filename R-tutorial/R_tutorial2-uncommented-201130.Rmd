@@ -1,0 +1,460 @@
+---
+title: "R Tutorial II: Data visualization via ggplot"
+author: "Sunwoo Jeong"
+date: "11/30/2020"
+output: html_document
+---
+
+## Acknowledgement
+
+This tutorial is based on [Mike Frank's tutorial of Tidyverse](https://github.com/mcfrank/tidyverse-tutorial), which in turn is based on Hadley Wickham's [R for data scientists](http://r4ds.had.co.nz/). The latter resource contains extensive instructions on how to create effective visualizations of your experimental results, some of which we will cover today. Let's begin by reloading the data we will be working with (your assignments) and the necessary package (tidyverse, which includes ggplot2, which is commonly used for creating plots and visualizations in R).
+
+```{r setup, include=FALSE}
+## Call this in whenever you want to use associated packages such as ggplot2, tidyr, etc.
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
+
+## The data
+# datv is now fixed
+# Your Korean stops (F0/VOT) data
+datv <- read.csv('fall2020-stops-F0-combined.csv')
+# A sample data from previous year (resulting from the Korean Ganong experiment)
+datg <- read.csv('korean-ganong-cleaned.csv')
+# Your Korean causatives/inchoatives data
+datc <- read.csv('fall2020-causative-pilot-results.csv')
+```
+
+<!-- ----------------------------------------------------------------------- -->
+# Goals and Introduction
+
+By the end of this tutorial, you will know:
+
++ How to create plots and visualizations from data sets
++ How to create plots and visualizations from data summaries
+
+Take a quick look at how each data set look like:
+
+```{r}
+head(datv)
+head(datg)
+head(datc)
+```
+
+Let us also briefly check how to save the data set you modified in R:
+```{r}
+# Getting rid of the problematic row
+datv2 <- datv %>% filter(EndF0 != " --undefined--")
+datv2$EndF0 <- as.double(datv2$EndF0)
+head(datv2)
+
+# Adding a column for the slope
+datv2 <- datv2 %>%
+  mutate(slope = (StartF0 - EndF0)/(X.Duration.*1000))
+
+head(datv2$slope)
+
+# Saving the new data
+write.csv(datv2, file = "korean-stops-f0-cleaned.csv",row.names=FALSE)
+dat_new <- datv2
+head(dat_new)
+```
+# Visualizations from data sets
+
+What we will be working with is `ggplot2`. It is a plotting package that easily takes advantage of tidy data. ggplots have two important parts (there are of course more):
+
++ `aes` - the aesthetic mapping, or which data variables get mapped to which visual variables (x, y, color, symbol, etc.)
++ `geom` - the plotting objects that represent the data (points, lines, shapes, etc.)
+
+Let's try plottng the raw (mid) F0 data from assignment 1, with stop type on the x-axis, F0 on the y-axis, and speaker gender represented as color coded dots. Try also plotting the VOT data in the same way.
+
+## The Korean stops/F0 data from assignment 1
+
+```{r}
+datv %>%
+  ggplot(aes(x = type, y = MidF0, col = gender)) + 
+  geom_point() 
+
+datv %>%
+  ggplot(aes(x = type, y = VOT, col = gender)) + 
+  geom_point() 
+```
+
+You can also create boxplots (for most types of data, the preferred visualizations nowadays) with the same variables - if you want to maintain the default settings provided by R, all you need to change is the plotting object: `geom_boxplot()`. 
+
+```{r}
+datv %>%
+  ggplot(aes(x = type, y = MidF0, col = gender)) + 
+  geom_boxplot() 
+```
+
+Any thoughts on the data? Are they in line with the argument made in Kang & Guion? Why are the boxes for the male speaker squished? Suggestions on other modes of visualizations?
+
+Try out the violin plots as well! 
+
+```{r}
+datv %>%
+  ggplot(aes(x = type, y = MidF0, col = gender)) + 
+  geom_violin() 
+
+?geom_boxplot
+?geom_violin
+```
+
+
+**Exercise 1**
+
+Examine our causative pilot data. Create a box plot which plots framings on the x-axis, blame rating on the y-axis,and color codes morpheme type. Switch aesthetic mappings around. Which do you think is the most intuitive visualization? Do the same for perceived financial liability. What generalizations emerge?
+
+```{r}
+summary(datc)
+
+# TRY OUT WRITING YOUR OWN CODES!
+
+
+
+
+
+
+```
+
+The plot above made use of the following aesthetic mappings: x-axis, y-axis, and colors. If you want to plot additional factors, you can also use panels (`facet_grid`), as follows:
+
+```{r}
+datc %>%
+  ggplot(aes(x = framing, y = blame, col = morpheme)) + 
+  geom_boxplot() +
+  facet_grid(. ~ gender)
+
+
+datv %>%
+  ggplot(aes(x = type, y = MidF0, col = gender)) + 
+  geom_point()  +
+  facet_grid(stop ~ vowel)
+```
+
+
+## Saving plots
+
+If you want to save your plots for future use, the command to use is `ggsave()`.
+Here is an example:
+
+```{r}
+# By default, saves the last plot
+ggsave("datv_overview.pdf")
+
+# You can designate a variable to a particular plot, then save:
+p1 <- datc %>%
+  ggplot(aes(x = framing, y = blame, col = morpheme)) + 
+  geom_boxplot() +
+  facet_grid(. ~ gender)
+
+# The full specifications of parameters
+ggsave("datc_sum1.png", plot = p1, device = NULL, path = NULL,
+  scale = 1, width = NA, height = NA, units = c("in", "cm", "mm"),
+  dpi = 300, limitsize = TRUE)
+```
+
+
+# Visualizations from data summaries
+
+Sometimes, counts and mappings of raw data alone do not provide useful visualizations of experimental results. Recall from the last lab that we can create useful summary tables of a data set using the functions `summarise` and `group_by`.
+
+What `summarise` does is to *apply a function* to a part of the dataset to create a new summary dataset. 
+
+The general syntax: `summarise` takes multiple `new_column_name = function_to_be_applied_to_data(data_column)` entries in a list. 
+
+Where these two verbs shine is in combination. Because `summarise` applies functions to columns in your *grouped data*, not just to the whole dataset!
+
+Recall the summaries we started making last time:
+
+```{r}
+# The Korean stops/F0 data
+datv_f0_mean <- datv2 %>%
+  group_by(type, gender) %>%
+  summarise(meanMidF0 = mean(MidF0))
+
+datv_f0_mean
+
+datv_vot_mean <- datv2 %>%
+  group_by(type, gender) %>%
+  summarise(meanVOT = mean(VOT))
+
+datv_vot_mean 
+
+# The Korean causatives data
+datc_blame_sum <- datc %>%
+  group_by(morpheme, framing) %>%
+  summarise(meanBlame = mean(blame))
+
+datc_blame_sum
+
+```
+
+Let's plot the outputs of these summaries as follows:
+
+```{r}
+datv_f0_mean %>%
+  ggplot(aes(x = gender, y = meanMidF0, fill = type)) + 
+  geom_bar(position=position_dodge(.9), stat = "identity")
+
+datv_vot_mean %>%
+  ggplot(aes(x = gender, y = meanVOT, fill = type)) + 
+  geom_bar(position=position_dodge(.9), stat = "identity")
+
+datc_blame_sum %>%
+  ggplot(aes(x = framing, y = meanBlame, fill = morpheme)) + 
+  geom_bar(position=position_dodge(.9), stat = "identity")
+```
+
+What does the `position=` parameter specify? Figure it out by taking it out of the command and seeing what happens.
+
+
+
+## Fine-tuning the summaries
+
+Oftentimes, especially for bar plots, we would want to overlay error bars representing standard errors on top of mean values. We can easily create more sophisticated summary tables, using built-in functions:
+
+```{r}
+datc_blame_sum2 <- datc %>%
+  group_by(morpheme, framing) %>%
+  summarise(meanBlame = mean(blame),
+            nBlame = n(),
+            sdBlame = sd(blame), 
+            seBlame = sdBlame/sqrt(nBlame))
+```
+
+
+Let's now create plots with error bars:
+
+```{r}
+datc_blame_sum2 %>%
+  ggplot(aes(x = framing, y = meanBlame, fill = morpheme)) + 
+  geom_bar(position=position_dodge(.9), stat = "identity") +
+  geom_errorbar(aes(ymin=meanBlame-seBlame, ymax=meanBlame+seBlame),
+                width=.2,                    # Width of the error bars
+                position=position_dodge(.9))
+
+datc_blame_sum2 %>%
+  ggplot(aes(x = morpheme, y = meanBlame, fill = framing)) + 
+  geom_bar(position=position_dodge(.9), stat = "identity") +
+  geom_errorbar(aes(ymin=meanBlame-seBlame, ymax=meanBlame+seBlame),
+                width=.2,                    # Width of the error bars
+                position=position_dodge(.9))
+```
+
+
+
+**Exercise 2** Create a detailed summary of means and standard errors, and a matching plot with error bars for the slope data in `datv` (with slope as the main dependent variables, and again type and gender as predictors). Create a detailed summary of means and standard errors, and a matching plot with error bars for the financial liability data in `datc`
+
+```{r}
+# TRY OUT WRITING YOUR OWN CODES!
+
+# datv2 data 
+head(datv2)
+
+
+
+
+# datc data 
+head(datc)
+
+
+
+
+
+
+```
+
+
+# Making things pretty
+
+The possibilities are endless! Below are a few basic settings. For ideas on color combinations, check this out: [http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/) If you are a fan of Wes Anderson movies, you can also check this out: [https://github.com/karthik/wesanderson](https://github.com/karthik/wesanderson)
+
+```{r}
+# Basic
+datv_slope_sum %>%
+  ggplot(aes(x = gender, y = meanSlope, fill = type)) + 
+  geom_bar(position=position_dodge(.9), stat = "identity") +
+  geom_errorbar(aes(ymin=meanSlope-seSlope, ymax=meanSlope+seSlope),
+                width=.2,                    # Width of the error bars
+                position=position_dodge(.9)) +
+  ggthemes::theme_few() + 
+  ggthemes::scale_color_solarized() 
+
+# Wes Anderson
+install.packages("wesanderson")
+library(wesanderson)
+
+datc_liability_sum %>%
+  ggplot(aes(x = morpheme, y = meanFin, fill = framing)) + 
+  geom_bar(position=position_dodge(.9), stat = "identity") +
+  geom_errorbar(aes(ymin=meanFin-seFin, ymax=meanFin+seFin),
+                width=.2,                    # Width of the error bars
+                position=position_dodge(.9)) +
+  ggthemes::theme_few() + 
+  scale_fill_manual(values = wes_palette("Royal1"))
+
+```
+
+
+# Count data
+
+So far, we've focused on data that have a particular structure. The dependent variable is a continuous numeric variable (or can be treated as such without too much distortion), and the independent variables are factors with discrete levels. But how about when we have dependent variables with discrete levels (e.g., binary choice)?
+
+The following are a few ways of summarizing and visualizing count data, focusing on another data set, the Ganong data (collected by your peers from a class conducted the previous year).
+
+Let us try and see if the following predictions are borne out.
+
++ *Prediction 1* Other things being equal, higher F0 stimuli along the 7-step continua will elicit significantly more aspirated choices.
++ *Prediction 3* Other things being equal, there will be significantly more aspirated choices in the ambiguous F0 region for word:p/t-nonword:b/d type stimuli, and significantly more lenis choices in the ambiguous F0 region for word:b/d-nonword:p/t type stimuli.
+
+To visualize the core offline measures (lenis vs. aspirated choice), we want to create a summary table of the count/proportion of lenis vs. aspirated responses as conditioned by the 7-step F0 stimuli. We will be subdividing the dataset into two groups based on word-status, and overlaying two plots from these two data frames.
+
+First, recall our first R lab, and subdivide the data into 2 frames using `filter()`
+
+We can use `summarise(n = n())` and `mutate(freq = n / sum(n))` functions to generate counts and percentages. Recall the joint use of `group_by()` and `summarise()` in creating summary tables.
+
+We designate a new dataframe within an additional geom object to create overlays.
+
+```{r}
+## Inspect the data
+head(datg)
+
+## Treat F0 as a factor
+datg$F0 <- as.factor(datg$F0)
+summary(datg$F0)
+
+## Filter and create two data frames
+
+datg_lenword <-
+  datg %>%
+  filter(word_status == "len_word")
+
+datg_aspword <-
+  datg %>%
+  filter(word_status == "asp_word")
+
+## Create summary tables for each data frame
+
+# lenis words
+
+sum_lenword <- datg_lenword %>%
+  group_by(stop_response2, F0) %>% 
+  summarise(count=n()) %>% 
+  mutate(perc=count/sum(count), n=sum(count))
+
+sum_lenword
+
+# aspirated words
+
+sum_aspword <- datg_aspword %>%
+  group_by(stop_response2, F0) %>% 
+  summarise(count=n()) %>% 
+  mutate(perc=count/sum(count), n=sum(count))
+
+sum_aspword
+
+
+## Visualization
+
+# First, a simple bar graph for one class of data ('lenis is a word' pairs)
+
+sum_lenword %>%
+  ggplot(aes(x = F0, y = perc, fill = stop_response2)) + 
+  geom_bar(position=position_dodge(.9), stat = "identity") 
+
+# Error bars can be calculated in the following ways
+sum_lenword2$se = sqrt(sum_lenword2$perc*(1-sum_lenword2$perc)/sum_lenword2$n)
+sum_lenword2$uci = sum_lenword2$perc + 1.96*sum_lenword2$se
+sum_lenword2$lci = sum_lenword2$perc - 1.96*sum_lenword2$se
+
+# Now, let us convert them into point data and overlay two data sets
+
+sum_lenword %>%
+  ggplot(aes(x = F0, y = perc, col = stop_response2)) + 
+  geom_point() +
+  geom_point(data = sum_aspword)
+```
+
+Do you see any problems? How do you want to change the plots? First, we may want to remove superfluous information, and plot only the lenis choices or only the aspirated choices. We can do that by filtering the summary tables. Let's also connect the dots as in the Ganong reading (what do these lines assume/signify?) -- we can do that by using the `group` command. I've also designated color-blind-friendly colors for each word status group, using the following reference: [Color palette from R cookbook](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
+
+```{r}
+## Filtering
+
+sum_aspword2 <-
+  sum_aspword %>%
+  filter(stop_response2 == "asp")
+
+sum_lenword2 <-
+  sum_lenword %>%
+  filter(stop_response2 == "asp")
+
+## Visualization
+
+sum_lenword2 %>%
+  ggplot(aes(x = F0, y = perc)) + 
+  geom_point(color = "#009E73") +
+  geom_point(data = sum_aspword2, color = "#D55E00")
+
+## Connecting points with lines
+
+sum_lenword2 %>%
+  ggplot(aes(x = F0, y = perc, group = stop_response2)) + 
+  geom_point(color = "#009E73") + geom_line(color = "#009E73") +
+  geom_point(data = sum_aspword2, color = "#D55E00") + geom_line(data = sum_aspword2, color = "#D55E00")
+```
+
+**Group Discussion**
+
+Do the results confirm our predictions 1 \& 3? Why or why not? Discuss the theoretical implications of the results!
+
+# Fine-tuning \& prettifying the plots
+
+Anything else you want to add to the plots? Error bars would be helpful, right? 
+
+## Adding error bars
+
+For count data, we can add them using the formula below:
+
+```{r}
+
+## For the lenis words subset:
+
+sum_lenword2$se = sqrt(sum_lenword2$perc*(1-sum_lenword2$perc)/sum_lenword2$n)
+sum_lenword2$uci = sum_lenword2$perc + 1.96*sum_lenword2$se
+sum_lenword2$lci = sum_lenword2$perc - 1.96*sum_lenword2$se
+
+sum_lenword2
+
+## Now do the same for the aspirated words subset:
+
+sum_aspword2$se = sqrt(sum_aspword2$perc*(1-sum_aspword2$perc)/sum_aspword2$n)
+sum_aspword2$uci = sum_aspword2$perc + 1.96*sum_aspword2$se
+sum_aspword2$lci = sum_aspword2$perc - 1.96*sum_aspword2$se
+
+sum_lenword2
+
+```
+
+Plots with error bars can be created as below (recall R lab 2);
+
+```{r}
+
+## Visualization with error bars
+
+sum_lenword2 %>%
+  ggplot(aes(x = F0, y = perc, group = stop_response2)) + 
+  geom_point(color = "#009E73") + 
+  geom_line(color = "#009E73") +
+  geom_errorbar(color = "#009E73", 
+                aes(ymin=lci, ymax=uci),
+                width=.2,
+                position=position_dodge(.9)) +
+  geom_point(data = sum_aspword2, color = "#D55E00") + 
+  geom_line(data = sum_aspword2, color = "#D55E00") +
+  geom_errorbar(data = sum_aspword2, color = "#D55E00",
+                aes(ymin=lci, ymax=uci),
+                width=.2,
+                position=position_dodge(.9))
+
+```
