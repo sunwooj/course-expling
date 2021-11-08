@@ -1,19 +1,17 @@
-Note: As of 2021, IBEX has been superseded with [PCIbex](https://doc.pcibex.net/). However, the core syntax and the nature of the platform remains the same. To work on the tutorial below, please sign up at the [PCIbex Farm](https://farm.pcibex.net/).
-
 # IBEX Tutorial: Day 1
 
-Day 1 will cover the basics of creating simple acceptability judgement or other types of forced-choice task experiments. We will do a mini-replication of experiment 1  reported in our reading, Sprouse et al (2016), focusing just on whether-island constructions and wh-dependencies. See [the first author's website](https://sprouse.uconn.edu/research.html) for more details on the data and the stimuli list. For a comprehensive step-by step guide to using IBEX, please consult [Brian Dillon and Rodica Ivan's LSA tutorial](https://xlingumass.github.io/resources/LSA_Minicourse_DillonIvan.pdf). For a more general purpose tutorial on PCIbex, please also consult the [PCIbex tutorial](https://doc.pcibex.net/basic-tutorial/). (Youtube video available as well.) Finally, the [official IBEX manual](https://github.com/addrummond/ibex/blob/master/docs/manual.md) will function as an indispensible reference if you want to be more flexible with your experiment designs.
+Day 1 will cover the basics of creating simple acceptability judgement or other types of forced-choice task experiments. We will do a mini-replication of experiment 1  reported in our reading, Sprouse et al (2016), focusing just on whether-island constructions and wh-dependencies. See [the first author's website](https://sprouse.uconn.edu/research.html) for more details on the data and the stimuli list. For a comprehensive step-by step guide to using IBEX, please consult [Brian Dillon and Rodica Ivan's LSA tutorial](https://xlingumass.github.io/resources/LSA_Minicourse_DillonIvan.pdf). The [official IBEX manual](https://github.com/addrummond/ibex/blob/master/docs/manual.md) will also function as an indispensible reference if you want to be more flexible with your experiment designs.
 
 ## 0. Getting started
 
-To create a new experiment, log in to your account at the [PCIbex Farm](https://farm.pcibex.net/) and click on *Empty project* under *Start a new project*.
+To create a new experiment, log in to your account in [IBEX Farm](http://spellout.net/ibexfarm/) and click on *Create a new experiment*.
 For a basic experiment, all you need to modify will be the javascript file under:
 
 ``` 
-Scripts
+data_includes
 ```
 
-You can download `examples_data.js` that I shared with you (it provides you with a basic template for a self-paced reading experiment including comprehension tasks) and work from there, or work from scratch, or work from another existing template that can execute tasks that are most similar to the experiment you have in mind. As a practice, let's try creating the main javascript file from scratch. You can work directly on the script editor on the web or go to a code editor of your choice (I recommend Visual Studio Code), work on the javascript, and import it back to the PCIbex farm. If you chose the latter option, save the experiment in an appropriate directory and give it an intuitive name with the extension `.js`. Usually, working on this file will involve 4 parts.
+You can download `examples_data.js` present under `data_includes` (it provides you with a basic template for a self-paced reading experiment including comprehension tasks) and work from there, or work from scratch, or work from another existing template that can execute tasks that are most similar to the experiment you have in mind. As a practice, let's try creating the main javascript file from scratch. Go to a code editor of your choice (I recommend Visual Studio Code) and open a new blank file. Save it in an appropriate directory and give it an intuitive name with the extension `.js`. Usually, working on this file will involve 4 parts.
 
 * Defining experimental trials and filler/practice trials; representing them as `items` variables
 * Defining controller defaults (when applicable) for experimental trials
