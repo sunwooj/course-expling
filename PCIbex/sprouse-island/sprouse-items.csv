@@ -1,0 +1,65 @@
+﻿group,item,structure,gap,islandtype,sentence
+A,1,nonisland,short,wh,Who thinks that Paul stole the necklace?
+B,2,nonisland,short,wh,Who thinks that Matt chased the bus?
+C,3,nonisland,short,wh,Who thinks that Tom sold the television?
+D,4,nonisland,short,wh,Who thinks that Stacey wrote the letter?
+E,5,nonisland,short,wh,Who thinks that Aaron bought the house?
+F,6,nonisland,short,wh,Who thinks that George read the book?
+G,7,nonisland,short,wh,Who thinks that Heather saw the movie?
+H,8,nonisland,short,wh,Who thinks that Casey baked the cake?
+B,1,nonisland,long,wh,What does the detective think that Paul stole?
+C,2,nonisland,long,wh,What does the police officer think that Matt chased?
+D,3,nonisland,long,wh,What does the manager think that Tom sold?
+E,4,nonisland,long,wh,What does the soldier think that Stacey wrote?
+F,5,nonisland,long,wh,What does the agent think that Aaron bought?
+G,6,nonisland,long,wh,What does the teacher think that George read?
+H,7,nonisland,long,wh,What does the girl think that Heather saw?
+A,8,nonisland,long,wh,What does the guest think that Casey baked?
+C,1,island,short,wh,Who wonders whether Paul stole the necklace?
+D,2,island,short,wh,Who wonders whether Matt chased the bus?
+E,3,island,short,wh,Who wonders whether Tom sold the television?
+F,4,island,short,wh,Who wonders whether Stacey wrote the letter?
+G,5,island,short,wh,Who wonders whether Aaron bought the house?
+H,6,island,short,wh,Who wonders whether George read the book?
+A,7,island,short,wh,Who wonders whether Heather saw the movie?
+B,8,island,short,wh,Who wonders whether Casey baked the cake?
+D,1,island,long,wh,What does the detective wonder whether Paul stole?
+E,2,island,long,wh,What does the police officer wonder whether Matt chased?
+F,3,island,long,wh,What does the manager wonder whether Tom sold?
+G,4,island,long,wh,What does the soldier wonder whether Stacey wrote?
+H,5,island,long,wh,What does the agent wonder whether Aaron bought?
+A,6,island,long,wh,What does the teacher wonder whether George read?
+B,7,island,long,wh,What does the girl wonder whether Heather saw?
+C,8,island,long,wh,What does the guest wonder whether Casey baked?
+E,1,nonisland,short,wh,Who thinks that Paul stole the necklace?
+F,2,nonisland,short,wh,Who thinks that Matt chased the bus?
+G,3,nonisland,short,wh,Who thinks that Tom sold the television?
+H,4,nonisland,short,wh,Who thinks that Stacey wrote the letter?
+A,5,nonisland,short,wh,Who thinks that Aaron bought the house?
+B,6,nonisland,short,wh,Who thinks that George read the book?
+C,7,nonisland,short,wh,Who thinks that Heather saw the movie?
+D,8,nonisland,short,wh,Who thinks that Casey baked the cake?
+F,1,nonisland,long,wh,What does the detective think that Paul stole?
+G,2,nonisland,long,wh,What does the police officer think that Matt chased?
+H,3,nonisland,long,wh,What does the manager think that Tom sold?
+A,4,nonisland,long,wh,What does the soldier think that Stacey wrote?
+B,5,nonisland,long,wh,What does the agent think that Aaron bought?
+C,6,nonisland,long,wh,What does the teacher think that George read?
+D,7,nonisland,long,wh,What does the girl think that Heather saw?
+E,8,nonisland,long,wh,What does the guest think that Casey baked?
+G,1,island,short,wh,Who wonders whether Paul stole the necklace?
+H,2,island,short,wh,Who wonders whether Matt chased the bus?
+A,3,island,short,wh,Who wonders whether Tom sold the television?
+B,4,island,short,wh,Who wonders whether Stacey wrote the letter?
+C,5,island,short,wh,Who wonders whether Aaron bought the house?
+D,6,island,short,wh,Who wonders whether George read the book?
+E,7,island,short,wh,Who wonders whether Heather saw the movie?
+F,8,island,short,wh,Who wonders whether Casey baked the cake?
+H,1,island,long,wh,What does the detective wonder whether Paul stole?
+A,2,island,long,wh,What does the police officer wonder whether Matt chased?
+B,3,island,long,wh,What does the manager wonder whether Tom sold?
+C,4,island,long,wh,What does the soldier wonder whether Stacey wrote?
+D,5,island,long,wh,What does the agent wonder whether Aaron bought?
+E,6,island,long,wh,What does the teacher wonder whether George read?
+F,7,island,long,wh,What does the girl wonder whether Heather saw?
+G,8,island,long,wh,What does the guest wonder whether Casey baked?
