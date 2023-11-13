@@ -1,0 +1,288 @@
+% Document class is article
+\documentclass{article}
+% To facilitate recognition of non-Roman alphabet inputs
+\usepackage[utf8]{inputenc}
+% For more functions involving bibliography
+\usepackage{natbib}
+% For typesetting Korean
+\usepackage{kotex}
+% For typesetting IPA phonetic symbols
+\usepackage{tipa}
+% For inserting pictures
+\usepackage{graphicx}
+% For managing figures and captions
+\usepackage{float}
+% For glossing linguistic examples
+\usepackage{linguex}
+% For inserting hyperlinks and such; I've tweaked the settings to get rid of ugly color blocks that appears by default
+\usepackage[colorlinks, linkcolor=black, urlcolor=black, citecolor=black]{hyperref}
+% For additional math symbols
+\usepackage{stmaryrd}
+% For making fancy headers and such
+\usepackage{fancyhdr}
+%tables
+\usepackage{booktabs}
+%float
+\usepackage{float}
+
+%Here's an example of how you might create a customized command for your own use -- this one creates a shortcut for denotation brackets in semantics; see problem 3 for its use
+\newcommand{\sem}[1]{\ensuremath{\llbracket\textrm{#1}\rrbracket^{w}}}
+
+\title{Experimental Linguistics Lab Assignment \\ PCIbex Exercises \& Final Project Proposal}
+\date{November 2023}
+%% FILL IN YOUR NAME
+\author{Your name}
+
+
+%% Set fancy header settings for all pages after the first page
+\pagestyle{fancy}
+\fancyhf{}
+%% CHANGE THE DATE IF NEEDED
+\rhead{November 25th, 2023}
+\lhead{PCIbex Exercises}
+\rfoot{Page \thepage}
+
+
+
+\begin{document}
+
+%Makes a title
+\maketitle
+
+\section{Mini-replication of \cite{sprouse2016}}
+
+Follow along the tutorial in: 
+
+\begin{quotation}
+\noindent
+\url{https://github.com/sunwooj/course-expling/tree/master/PCIbex}
+\end{quotation}
+
+\noindent The sample javascript file (.js) is included in the packet. You can use it as a starting template to build your own experiments.
+
+
+
+
+\section{PCIbex Assignments}
+
+Choose \textbf{two} from the following three experiments outlined in sec.~\ref{asmt1}--sec.~\ref{asmt3}. Create the two experiments in PCIbex, using the seed materials provided in the Github repository. Provide the links in the designated areas below.
+
+
+
+
+%%%% ASSIGNMENT 1
+\subsection{Assignment I: Forced Choice Tasks}\label{asmt1}
+
+\paragraph{Objective} Create a mini version of the first experiment outlined in \cite{brasoveanu2015}. The experiment should have the following properties:
+
+\begin{itemize}
+    \item It has a mock consent page at the beginning, with a checkbox
+    \item A given participant sees each of the 4 conditions once, i.e., a total of 4 target trials, and all 4 fillers in random order, i.e., 8 trials total
+    \item The item * condition pairing is determined by a latin-square type pseudo-randomization
+\end{itemize}
+
+\noindent Sample text stimuli can be found under \texttt{asmt1-semantics-scope-resultative} folder. You will need to create a .csv.
+
+\paragraph{Assignment I}
+
+Include the url of the completed experiment on scope and resultatives.\ 
+
+\begin{quotation}
+\noindent
+%%%% FILL IN BELOW
+%Substitute the url provided below with your own
+\url{https://your-scope-experiment-url}
+\end{quotation}
+
+
+
+
+%%%% ASSIGNMENT 2
+\subsection{Assignment II: Incorporating Auditory Stimuli}\label{asmt2}
+
+\paragraph{Objective} Imagine an experiment in which we want to test whether the derivation of positive epistemic bias from Preposed Negation Questions (henceforth PNQs) is systematically modulated by focus prosody. (As entertained in slides from first few weeks of the class.)
+
+\paragraph{Stimuli} We might want to include the following types of stimuli, broken down into 3 main experimental conditions, instantiated as 3 items (brackets [\,] represent focus prosody):
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}[b]{c c l}
+        \toprule
+        Items & Conditions & Stimuli \\
+        \midrule
+        1 & PNQ-NPF & [민우가] 이모를 부르지 않았니? \\
+        1 & PNQ-POF & 민우가 이모를 부르지 [않았니]? \\
+        1 & PQ-NPF & [민우가] 이모를 불렀니? \\
+        \midrule
+        2 & PNQ-NPF & 유민이가 [월요일에] 오지 않았니? \\
+        2 & PNQ-POF & 유민이가 월요일에 오지 [않았니]? \\
+        2 & PQ-NPF & 유민이가 [월요일에] 왔니? \\
+        \midrule
+        3 & PNQ-NPF & 유라가 매미한테 [물리지] 않았니? \\
+        3 & PNQ-POF & 유라가 매미한테 물리지 [않았니]? \\
+        3 & PQ-NPF & 유라가 매미한테 [물렸니]? \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\noindent NPF stands for non-polarity focus; POF stands for polarity focus.\ PQ stands for polar questions. The sound files corresponding to each item * condition pairing can be found under: \texttt{asmt2-phonology-semantics-focused-pnqs} $>$ \texttt{sounds} folder.
+
+\paragraph{Hypothesis}
+
+Based on native speaker intuitions, we may formulate the following hypothesis: PQs don't give rise to any positive epistemic bias. PNQs do give rise to positive epistemic bias, but polarity focus weakens the perceived bias.
+
+\paragraph{Experiment design}
+
+% You can comment out the instructions below, if needed
+\begin{enumerate}
+
+    \item \textbf{The general task} Participants rate the perceived epistemic bias of the speaker after hearing the auditory stimuli
+
+    \item \textbf{Further details of the design} 
+
+    \begin{itemize}
+        \item Dependent variable(s): Speaker certainty/bias ratings
+        \item Conditions: PNQ-NPF, PNQ-POF, PQ-NPF
+    \end{itemize}
+
+\end{enumerate}
+
+\paragraph{Assignment II}
+
+Include the url of the completed experiment on focused PNQs.\ 
+
+\begin{quotation}
+\noindent
+%%%% FILL IN BELOW
+%Substitute the url provided below with your own
+\url{https://your-focused-pnq-experiment-url}
+\end{quotation}
+
+
+
+
+%%%% ASSIGNMENT 3
+\subsection{Assignment III: Incorporating Visual Stimuli}\label{asmt3}
+
+\paragraph{Objective} Create a mini-adaptation of an experiment along the vein of \cite{barner2011} and \cite{jasbi2017}. The experiment should have the following properties:
+
+\begin{itemize}
+    \item It has a mock consent page at the beginning, with a checkbox
+    \item A given participant sees each of the 6 conditions (2 types of pictures * 3 types of quantificational sentences) once, i.e., a total of 6 target trials 
+    \item The item * condition pairing is determined by a latin-square type pseudo-randomization
+\end{itemize}
+
+\noindent The image files can be found under \texttt{asmt3-pragmatics-scalar-implicature} $>$ \texttt{images} folder. You will need to create a .csv.
+
+\paragraph{Assignment III}
+
+Include the url of the completed experiment on scalar implicatures.\ 
+
+
+\begin{quotation}
+\noindent
+%%%% FILL IN BELOW
+%Substitute the url provided below with your own
+\url{https://your-scalar-implicature-experiment-url}
+\end{quotation}
+
+
+
+\section{Your final project proposal}
+
+% You can comment out the instructions below
+The proposal should be 1--2 pages in length. It will later be used as a skeleton for writing up your final paper. 
+%, using the default setting of the \emph{article} document class in \LaTeX.\ 
+Please fill out the following information (and comment out the instructions):
+
+
+\paragraph{A brief review of the previous literature}
+
+% You can comment out the instructions below
+Do some research on the background literature associated with your research topic.\ Make a~.bib file of key references, and briefly summarize the theoretical landscape, making sure to cite the key references.
+
+
+\paragraph{Motivation for the current study}
+
+% You can comment out the instructions below
+Identify a gap or an unresolved issue that you would like to address in your project. 
+
+
+\paragraph{Hypothesis}
+
+% You can comment out the instructions below
+In 1-2 sentences, formulate the main hypothesis you would like to test in this experiment.
+
+
+\paragraph{Experiment design}
+
+% You can comment out the instructions below
+\begin{enumerate}
+
+    \item \textbf{The general task} In 1-2 sentences, briefly describe the type of task that participants will engage with in your experiment.
+
+    \item \textbf{Further details of the design} What are the key dependent variables you will measure? What are the factors being manipulated? What are the levels? Is the experiment between-subjects? Within-subjects? Mixed? 
+
+    \begin{itemize}
+        \item Dependent variable(s):
+        \item Factors \& levels:
+        \item Other details:
+        % subject-condition pairing, condition-item pairing, order of trials, mode of randomization, etc. These details don't have to be fully worked out -- if you have questions about them, you can include them below.
+    \end{itemize}
+
+\end{enumerate}
+
+
+\paragraph{Predictions}
+
+% You can comment out the instructions below
+In 1-2 sentences, formulate the predictions you have.
+
+
+\paragraph{Questions (Optional)}
+
+% You can comment out the instructions below
+If any, list the questions you have on designing and implementing the experiment.
+
+
+
+\bibliographystyle{chicago}
+%% To add your own references, uncomment below and update the name of the bib file accordingly
+%\bibliography{your-bibfile.bib}
+
+
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Barner, Brooks, and Bale}{Barner
+    et~al.}{2011}]{barner2011}
+Barner, D., N.~Brooks, and A.~Bale (2011).
+\newblock Accessing the unsaid: The role of scalar alternatives in children's
+    pragmatic inference.
+\newblock {\em Cognition\/}~{\em 118\/}(1), 84--93.
+
+\bibitem[\protect\citeauthoryear{Brasoveanu and Dotla{\v{c}}il}{Brasoveanu and
+    Dotla{\v{c}}il}{2015}]{brasoveanu2015}
+Brasoveanu, A. and J.~Dotla{\v{c}}il (2015).
+\newblock Strategies for scope taking.
+\newblock {\em Natural Language Semantics\/}~{\em 23\/}(1), 1--19.
+
+\bibitem[\protect\citeauthoryear{Jasbi and Frank}{Jasbi and
+    Frank}{2017}]{jasbi2017}
+Jasbi, M. and M.~C. Frank (2017).
+\newblock The semantics and pragmatics of logical connectives: Adults' and
+    children's interpretations of and and or in a guessing game.
+\newblock In {\em Proceedings of Cognitive Science}.
+
+\bibitem[\protect\citeauthoryear{Sprouse, Caponigro, Greco, and
+    Cecchetto}{Sprouse et~al.}{2016}]{sprouse2016}
+Sprouse, J., I.~Caponigro, C.~Greco, and C.~Cecchetto (2016).
+\newblock Experimental syntax and the variation of island effects in {E}nglish
+    and {I}talian.
+\newblock {\em Natural Language \& Linguistic Theory\/}~{\em 34\/}(1),
+    307--344.
+
+\end{thebibliography}
+
+
+
+\end{document}
