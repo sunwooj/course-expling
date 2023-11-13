@@ -8,10 +8,11 @@ As a case study, we will create a simple acceptability judgement experiment. The
 ## 0-1. A brief refresher
 
 Recall that Sprouse et al. (2016) had 4 conditions from a 2x2 design (factor 1: long distance dependency or not? / factor 2: complex structure (island) or not?). We can refer to each condition as follows:
-    * island, short
-    * island, long
-    * non-island, short
-    * non-island, long
+
+* island, short
+* island, long
+* non-island, short
+* non-island, long
 
 See the packet for a full list of the stimuli used.
 
@@ -109,10 +110,16 @@ You can check the Preview window to confirm that everything is displaying the wa
 
 The code above only renders a single trial, but we want the same trial structure to loop over the randomized set of stimuli (item/condition pairings). Much like in Psychopy, this can be set by uploading a .csv that provides information about the conditions/stimuli, and invoking it in the script. I have already created the relevant .csv for you (it can be found in the packet). Examine it (especially the column names), and upload it under `Resources`.
 
+**Exercise** *What are the first and the second column in the csv specifying? What type of counterbalancing do you think is relevant here?*
+
 
 ## 3. Fine-tuning the elements and the flow of the main trials
 
-Now, we can make reference to the .csv and loop over it by embedding the code above in `Template()`, and making reference to relevant column names with `row.` Below is the updated code, with some additional refinements (e.g., spacing added to the scale, feedback and continue button added after each selection, and loggers added at the end).
+Now, we can make reference to the .csv and loop over it by embedding the code above in `Template()`, and making reference to relevant column names with `row.` 
+
+**Exercise** *Update the relevant trial section and render it into a loop. Take note of parts you would like to change. Change them accordingly.*
+
+Below is the updated code, with some additional refinements (e.g., spacing added to the scale, feedback and continue button added after each selection, and loggers added at the end).
 
 ```
 Template("sprouse-items.csv", row =>
@@ -161,12 +168,15 @@ The trial sequence can be set as follows, and this setting be included near the 
 Sequence("instructions", randomize("experimental-trial"))
 ```
 
+**Exercise** *Try running the experiment with and without specifying the sequence. Is there a difference?*
+
 The experiment is now more or less ready to be run! When everything is ready, uncomment `DebugOff()`, swipe to `Published`, and spread the experiment link you obtain from `Share`. The results from your participants will be saved under `Results`, which you can download.
 
 If you run into errors, check the debugger. Another (more post-hoc) way to get an idea of where things went wrong, is to use View > Developer > Javascript Console in Google Chrome (or right click, Inspect). 
 
+**Exercise** *Run the experiment and download the results. Where do you think the main results are being saved? Notice any problems?*
 
-
+**Assignment I** *Consult the .txt and create a mini-replication of the resultative/scope experiment from Brasoveanu & Dotlacil (2015). See the handout for more details.*
 
 
 # IBEX Tutorial: Experiments using auditory or visual stimuli
@@ -280,9 +290,9 @@ The Sequence would now have to be updated as follows:
 Sequence("consent", "instructions", randomize("experimental-trial"))
 ```
 
-## Assignment I
+**Assignment II** *Complete the focused PNQ experiment, whereby a given participant hears each of the 3 target conditions exactly once, each instantiated as different items, and both of the 2 fillers. Consult the handout for more details.*
 
-Complete the focused PNQ experiment, whereby a given participant hears each of the 3 target conditions exactly once, each instantiated as different items, and both of the 2 fillers. Consult the handout for more details.
+
 
 ## 3. Including visual stimuli
 
@@ -296,8 +306,8 @@ newImage("picture", "picture_file.png")
             .log()
 ```
 
-## Assignment II
+**Assignment III** *Complete the scalar implicature experiment, inspired by Barner et al. (2011) and Jasbi and Frank (2017), whereby a given participant sees each of the 6 target conditions exactly once, each instantiated as different items. Consult the handout for more details. You will also need to create the .csv for this.* 
 
-Complete the scalar implicature experiment, inspired by Jasbi and Frank (2017), whereby a given participant sees each of the 6 target conditions exactly once, each instantiated as different items. Consult the handout for more details. You will also need to create the .csv for this.
+
 
 
