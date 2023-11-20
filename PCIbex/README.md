@@ -222,6 +222,8 @@ Sequence("instructions", randomize("experimental-trial"))
 
 **Exercise** *Try running the experiment with and without specifying the sequence. Is there a difference?*
 
+**Exercise** *Try including a simple exit page at the end. It can resemble the instructions page in terms of the key elements, and should come last in the sequence.*
+
 The experiment is now more or less ready to be run! When everything is ready, uncomment `DebugOff()`, swipe to `Published`, and spread the experiment link you obtain from `Share`. The results from your participants will be saved under `Results`, which you can download.
 
 If you run into errors, check the debugger. Another (more post-hoc) way to get an idea of where things went wrong, is to use View > Developer > Javascript Console in Google Chrome (or right click, Inspect). 
@@ -250,7 +252,8 @@ Once we've configured the rough structure of the experiment using the .csv, we c
 
 In many semantic/pragmatic experiments or other types of comprehension-related experiments, we may want to randomize not just the target sentences and trials, but also the order in which certain answer choices appear in. This can be done by updating the scale as follows: 
 
-```
+```     newVar("ansChoice").global()
+        ,
         newScale("answer", ...[row.surfaceAnswer,row.wideAnswer].sort(v=>0.5-Math.random()))
             .labelsPosition("right")
             .vertical()
@@ -263,7 +266,7 @@ In many semantic/pragmatic experiments or other types of comprehension-related e
         ,
 ```
 
-The last three lines perform a test that keeps track of and saves the shorthand answer choices to the long-form texts that actually appear. For the relevant variable to be logged, you will need to include `.log("ansChoice", getVar("ansChoice"))` at the end of the loop.
+The key part is the second line. Note that we also establish a new global variable at the onset using the `newVar()` command, and keep track of it near the end. This enables us to log intuitive stand-ins for participants' answer choices. Specifically, the last three lines perform a test that keeps track of and saves the shorthand answer choices to the long-form texts that actually appear. In order for the relevant variable to be logged, you will need to include `.log("ansChoice", getVar("ansChoice"))` at the end of the loop.
 
 
 
@@ -427,6 +430,7 @@ Sequence("consent", "instructions", randomize("experimental-trial"))
 
 **Exercise** *Try including the page for consent form in your demo experiments.*
 
+**(Optional) Exercise** Try including the exit demographic questionnaire. Search for the relevant keywords in the Forum and see if any useful tips pop up.
 
 
 # Wrapping up
