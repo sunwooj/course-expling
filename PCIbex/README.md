@@ -358,6 +358,7 @@ newTrial("experimental-trial",
 )
 ```
 
+When completing the assignment, you will need to loop-ify the above trial by constructing the appropriate csv file, using the `Template()` command, and referring to the appropriate headers in the csv file with `row.X` commands, as shown in previous sections of this tutorial.
 
 
 ## 3. Including visual stimuli
@@ -394,7 +395,8 @@ newImage("picture", "picture_file.png")
             .log()
 ```
 
-You will need to refer to the .csv and loop-ify this template accordingly.
+When completing the assignment, you will need to loop-ify the above trial by constructing the appropriate csv file, using the `Template()` command, and referring to the appropriate headers in the csv file with `row.X` commands, as shown in previous sections of this tutorial.
+
 
 
 
