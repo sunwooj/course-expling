@@ -252,7 +252,8 @@ Once we've configured the rough structure of the experiment using the .csv, we c
 
 In many semantic/pragmatic experiments or other types of comprehension-related experiments, we may want to randomize not just the target sentences and trials, but also the order in which certain answer choices appear in. This can be done by updating the scale as follows: 
 
-```     newVar("ansChoice").global()
+```     
+        newVar("ansChoice").global()
         ,
         newScale("answer", ...[row.surfaceAnswer,row.wideAnswer].sort(v=>0.5-Math.random()))
             .labelsPosition("right")
