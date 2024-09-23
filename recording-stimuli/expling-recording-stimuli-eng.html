@@ -1,0 +1,87 @@
+<html>
+<head>
+
+<title>Production Lab for ExpLing</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- FOR PHP DATA GATHERING -->
+
+<!-- <script type="text/javascript" src="https://stanford.edu/~sunwooj/experiments/mmturkey-extension.js"></script>  -->
+
+<!-- Debug mode -->
+<script type="text/javascript" src="https://sunwooj.github.io/experiments-shared/mmturkey.0.5.js"></script> 
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+<script src="recording-stimuli-eng.js"></script>
+
+<link rel="stylesheet" href="https://sunwooj.github.io/experiments-shared/sliders/jquery-ui.css"></link>
+
+<link href ="basic.css" rel="stylesheet" type="text/css"/>
+<!-- <link href ="https://sunwooj.github.io/experiments-shared/basic.css" rel="stylesheet" type="text/css"/> -->
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+</head>
+
+
+
+
+
+<!-- main html body -->
+<body>
+
+<div class='slide' id='intro'>   
+    <div>
+
+<br><br>
+<p class='center-text'> 
+<span style="font-weight: bold; color: #8C1515;"> Instructions </span>
+</p>
+<br><br>
+<p class='block-text'> Please click through and read the word or the sentence that appears on the screen. </p>
+
+<br>
+<button type='button' id='startbutton'>Start recording</button>
+
+    </div>
+</div>
+
+
+
+<!-- Main experiment starts here -->
+<div class='slide' id='stage'>
+	<div>
+
+<p><span style="font-weight: bold; color: #8C1515;"> Item <span class="item_number">{{}}</span> out of 26</span></p>
+
+<br><br><br><br>
+<p class='center-block-bigfont'>
+<span class='currentItem'>{{}}</span>
+</p> 
+
+<br>
+
+<button type='button' id='continue'>Continue</button>
+
+	</div>
+</div>
+
+
+
+
+<div class='slide' id='finish'>
+	<div>
+
+<br><br><br><br>
+<p class='block-text'>The recording has ended. Thank you for participating!</p>
+
+	</div>
+</div>
+
+
+
+</body>
+</html>
