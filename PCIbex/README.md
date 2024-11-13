@@ -209,6 +209,7 @@ Template("sprouse-items.csv", row =>
 )
 ```
 
+Check the saved results. Do you see any new problems that have arisen?
 
 
 ## 4. Defining the Sequence
@@ -228,7 +229,7 @@ The experiment is now more or less ready to be run! When everything is ready, un
 
 If you run into errors, check the debugger. Another (more post-hoc) way to get an idea of where things went wrong, is to use View > Developer > Javascript Console in Google Chrome (or right click, Inspect). 
 
-**Assignment 0** *Complete the mini-replication of the Sprouse et al. (2016) experiment*
+**Assignment 0** *Complete the mini-replication of the Sprouse et al. (2016) experiment.*
 
 
 # Day 2: Randomized answers, non-text stimuli (audio/visual), consent forms
@@ -275,7 +276,9 @@ The key part is the second line. Note that we also establish a new global variab
 
 By way of getting a handle on audio stimuli inclusion, let us try and create a mini-experiment outlined in the handout, which probes the potential connection between focus prosody and the interpretation of preposed negation polar questions. 
 
-**Assignment 2** *Consult the handout and create a mini-experiment involving the PNQ auditory stimuli. Set the experiment so that a given participant hears each of the 3 target conditions exactly once, each instantiated as different items, and both of the 2 fillers. Make sure to randomize the trials.*
+**Assignment 2** *Consult the handout and create a mini-experiment involving the PNQ auditory stimuli. Set the experiment so that a given participant hears each of the 3 target conditions exactly once, each instantiated as different items, and both of the 2 fillers. You will need to create a .csv. Make sure to randomize the trials. Please copy over and use the demo template below to get started.*
+
+[Auditory Experiment Template](https://farm.pcibex.net/r/panQvF/)
 
 Certain aspects of the experiment building process will already be familiar to you. For instance, The beginning and the instruction page would be as follows:
 
@@ -334,13 +337,6 @@ newTrial("experimental-trial",
     ,
     newScale("rating", "1", "2", "3", "4", "5", "6", "7")
         .labelsPosition("top")
-        .label(0, "&nbsp;&nbsp;1&nbsp;&nbsp;")
-        .label(1, "&nbsp;&nbsp;2&nbsp;&nbsp;")
-        .label(2, "&nbsp;&nbsp;3&nbsp;&nbsp;")
-        .label(3, "&nbsp;&nbsp;4&nbsp;&nbsp;")
-        .label(4, "&nbsp;&nbsp;5&nbsp;&nbsp;")
-        .label(5, "&nbsp;&nbsp;6&nbsp;&nbsp;")
-        .label(6, "&nbsp;&nbsp;7&nbsp;&nbsp;")
         .before( newText("left", "(전혀 없음)&nbsp;&nbsp;") )
         .after( newText("right", "&nbsp;&nbsp;(매우 높음)") )
         .center()
@@ -365,7 +361,9 @@ When completing the assignment, you will need to loop-ify the above trial by con
 
 By way of getting a handle on visual stimuli inclusion, let us try and create a mini-experiment outlined in the handout, inspired by Jasbi and Frank (2017) and Barner et al. (2011).
 
-**Assignment 3** *Complete the scalar implicature experiment, inspired by Jasbi and Frank (2017) and Barner et al. (2011). Consult the instructions below for more details. You will also need to create a .csv for this.* 
+**Assignment 3** *Complete the scalar implicature experiment, inspired by Jasbi and Frank (2017) and Barner et al. (2011). Consult the instructions below for more details. You will also need to create a .csv for this. Please copy over and use the demo template below to get started.* 
+
+[Visual Experiment Template](https://farm.pcibex.net/r/RmttFy/)
 
 In this experiment, we have four conditions, based on two factors: quantifier (i.e., target sentence), and context (i.e., picture). 
 
@@ -410,7 +408,7 @@ You can then include the following code before the code specifying the introduct
 // Consent form
 newTrial("consent",
     newHtml("consent_form", "consent.html")
-        .cssContainer({"width":"720px"})
+        .cssContainer({"width":"720px", "margin-bottom":"2em", "margin-left":"275px"})
         .checkboxWarning("실험에 참여하시려면 내용에 동의해 주셔야 합니다.")
         .print()
     ,
@@ -433,7 +431,7 @@ Sequence("consent", "instructions", randomize("experimental-trial"))
 
 **Exercise** *Try including the page for consent form in your demo experiments.*
 
-**(Optional) Exercise** Try including the exit demographic questionnaire. Search for the relevant keywords in the Forum and see if any useful tips pop up.
+**Exercise** Try including the exit demographic questionnaire. Search for the relevant keywords in the Forum and see if any useful tips pop up. Always check how the results are being saved, in addition to checking if the updated experiment is running smoothly.
 
 
 # Wrapping up
