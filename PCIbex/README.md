@@ -231,6 +231,9 @@ If you run into errors, check the debugger. Another (more post-hoc) way to get a
 
 **Assignment 0** *Complete the mini-replication of the Sprouse et al. (2016) experiment.*
 
+**Assignment 0 Answer** *Consult the sample template below after you've done the exercise above. The one below also includes a consent form at the beginning and the demographic questionnaire at the end. (You can learn about them in the following sections)* 
+
+[Acceptability judgement Experiment Template](https://farm.pcibex.net/r/IppjFy/)
 
 # Day 2: Randomized answers, non-text stimuli (audio/visual), consent forms
 
